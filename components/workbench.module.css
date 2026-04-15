@@ -1,0 +1,186 @@
+.page {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  line-height: 0.95;
+  margin: 12px 0 18px;
+  letter-spacing: -0.04em;
+  max-width: 11ch;
+}
+.hero p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.kicker, .step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: #ffd5c7;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.heroCard, .panel, .callout, .diagnosisCard, .productCard, .objectionItem {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+.heroCard {
+  padding: 24px;
+}
+.heroCard h2 { margin: 0 0 12px; }
+.heroCard ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.modelGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+.modelGrid div, .productCard span {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+.modelGrid span, .productCard span { display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 4px; }
+.grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.8fr) minmax(420px, 1.2fr);
+  gap: 24px;
+}
+.panel { padding: 24px; }
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+.panelHeader h2 { margin: 8px 0 0; }
+.panelHeader p { max-width: 34ch; color: var(--muted); margin: 0; }
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.full { grid-column: 1 / -1; }
+.field span { color: var(--muted); font-size: 0.92rem; }
+.field em { color: var(--orange); font-style: normal; }
+.field input, .field textarea {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  resize: vertical;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+.actions button {
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff6b35, #ff884d);
+  color: white;
+  font-weight: 700;
+  padding: 15px 18px;
+  cursor: pointer;
+}
+.actions button:disabled { opacity: 0.6; cursor: wait; }
+.actions p, .emptyState p { color: var(--muted); margin: 0; }
+.error, .warning {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,107,107,0.3);
+  background: rgba(255,107,107,0.12);
+  color: #ffd2d2;
+}
+.warning {
+  border-color: rgba(255,209,102,0.3);
+  background: rgba(255,209,102,0.12);
+  color: #ffe8a6;
+}
+.emptyState {
+  min-height: 500px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 32px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 24px;
+}
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border-color: rgba(255,107,53,0.3);
+}
+.callout span { color: var(--muted); font-size: 0.9rem; }
+.reportSection {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.reportSection h3 { margin: 0 0 12px; }
+.reportSection p { margin: 0 0 10px; color: #dbe2ee; }
+.list {
+  margin: 0;
+  padding-left: 18px;
+  color: #dbe2ee;
+}
+.list li + li { margin-top: 8px; }
+.dualGrid, .diagnosisGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.diagnosisGrid { grid-template-columns: 1fr 1fr; }
+.diagnosisCard, .productCard, .objectionItem { padding: 18px; }
+.diagnosisCard strong, .productCard h3 { display: block; margin-bottom: 10px; }
+.productList, .objections {
+  display: grid;
+  gap: 14px;
+}
+.productCard p, .objectionItem p { margin: 10px 0 0; color: #dbe2ee; }
+@media (max-width: 1200px) {
+  .hero, .grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .page { padding-inline: 16px; }
+  .formGrid, .dualGrid, .diagnosisGrid, .modelGrid { grid-template-columns: 1fr; }
+  .panelHeader { flex-direction: column; align-items: start; }
+}

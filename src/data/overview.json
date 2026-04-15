@@ -1,0 +1,10 @@
+{
+  "models": {
+    "digest": "anthropic/claude-haiku-4.5",
+    "reasoning": "anthropic/claude-opus-4.6"
+  },
+  "knowledgeLayerMessage": "Knowledge Layer is the foundation. Recommendations should explain what business knowledge gets unified and why that improves context, compliance, and execution.",
+  "productCount": 65,
+  "stackCount": 8,
+  "industryCount": 15
+}

@@ -1,0 +1,722 @@
+[
+  {
+    "industry": "Real Estate / Property Management",
+    "painPoints": [
+      "Tenant communication bottleneck - Manual responses to inquiries, maintenance requests, and lease questions spread across email, phone, and portals",
+      "Property data fragmentation - Rental data, tenant info, maintenance history, financials scattered across multiple systems",
+      "Maintenance scheduling inefficiency - Delayed issue resolution, poor coordination between tenants and contractors",
+      "Compliance and documentation burden - Managing lease compliance, safety certificates, insurance docs, regulatory requirements",
+      "Portfolio visibility gaps - Difficulty tracking performance across multiple properties, vacancies, rental income analysis"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Unify all property data, tenant contracts, compliance docs into single searchable source",
+      "AI Tenant Assistant - 24/7 automated response to tenant inquiries, maintenance requests, lease questions",
+      "Document Processing Agent - Automatically extract and organize lease data, inspection reports, compliance documents",
+      "Maintenance Scheduler Bot - Coordinate maintenance requests with contractor availability and tenant schedules",
+      "Portfolio Analytics Agent - Real-time dashboard of occupancy, rental income, maintenance costs across properties"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our tenants prefer human contact\"",
+        "rebuttal": "Our AI handles routine inquiries and escalates complex issues to your team—reducing workload while maintaining human touch for relationship-building. Most tenants actually prefer 24/7 availability."
+      },
+      {
+        "objection": "\"We're happy with our current system\"",
+        "rebuttal": "Those systems aren't talking to each other. You're losing insights and wasting time on manual data entry. Our Knowledge Layer connects everything your business knows into one searchable resource."
+      },
+      {
+        "objection": "\"What about data security?\"",
+        "rebuttal": "Australian-hosted, enterprise-grade encryption, compliant with all residential tenancy laws and data protection regulations. Your data never leaves Australia."
+      },
+      {
+        "objection": "\"Implementation will disrupt operations\"",
+        "rebuttal": "We integrate with your existing systems—no rip-and-replace. Phased rollout means you're operational immediately with quick wins."
+      },
+      {
+        "objection": "\"How do we know it works?\"",
+        "rebuttal": "We'll start with your highest-volume pain point (usually tenant communications). You'll see ROI in 30 days."
+      }
+    ],
+    "roiExample": "**Scenario: Mid-sized property manager with 50 properties, 200 tenants**\n\n**Current State:**\n- 2 FTE admin staff handling tenant communications = $180K/year\n- Average 5 hours/week on maintenance scheduling = $15K/year\n- 2 hours/week searching for compliance docs = $5K/year\n- **Total operational cost: $200K/year**\n\n**With Sunburnt AI Bundle:**\n- AI Tenant Assistant handles 80% of routine inquiries (saves 1.2 FTE) = $108K saved/year\n- Maintenance Scheduler eliminates scheduling conflicts = $12K saved/year\n- Document Processing eliminates search time = $4K saved/year\n- Knowledge Layer prevents compliance violations (risk mitigation) = $20K saved/year\n- **Total savings: $144K/year**\n\n**Costs:**\n- Bundle subscription: $48K/year\n- Implementation & training: $8K (one-time)\n- **Net Year 1 ROI: $88K (65% savings)**\n- **Payback period: 1.5 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Property Operations Bundle",
+      "details": [
+        "- Entry point: Knowledge Layer alone (~$X/month)",
+        "- Full stack: All four agents (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Healthcare / Medical Practices",
+    "painPoints": [
+      "Patient communication overwhelm - Appointment requests, prescription refills, test result questions, after-hours concerns handled manually",
+      "Medical records fragmentation - Patient data scattered across multiple systems, incomplete histories, difficult to access",
+      "Administrative inefficiency - Excessive time on scheduling, coding, billing queries, insurance verification",
+      "Compliance and documentation - Managing patient privacy (HIPAA-equivalent), incident reports, treatment protocols, consent forms",
+      "Care coordination gaps - Referral management, specialist follow-up tracking, medication reconciliation between providers"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Consolidate patient records, clinical protocols, compliance requirements, treatment guidelines",
+      "Patient Communication Agent - Automated appointment booking, prescription requests, test results notification, pre-visit questionnaires",
+      "Medical Records Processor - Extract and organize clinical notes, lab results, imaging reports, medication history",
+      "Insurance & Coding Assistant - Verify coverage, handle billing inquiries, suggest appropriate coding, reduce claim denials",
+      "Care Coordination Bot - Track referrals, automate specialist follow-ups, monitor medication reconciliation"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"We can't trust AI with patient data\"",
+        "rebuttal": "Our system is purpose-built for healthcare compliance. Encrypted, audit-logged, HIPAA-equivalent protections. AI handles routine inquiries; clinical decisions remain 100% with your doctors."
+      },
+      {
+        "objection": "\"Patients won't accept automated responses\"",
+        "rebuttal": "Patients already use patient portals. This extends that—they prefer automated updates for routine matters (results, reminders, prescriptions). Complex issues escalate to clinicians."
+      },
+      {
+        "objection": "\"Our EHR already does some of this\"",
+        "rebuttal": "Your EHR manages data storage, not intelligence. Ours connects your EHR data with protocols, best practices, and real-time decision support. Different layer of value."
+      },
+      {
+        "objection": "\"Implementation is too complex\"",
+        "rebuttal": "Healthcare is our wheelhouse. We've automated clinics like yours. Compliance documentation, staff training, integration planning—we handle it."
+      },
+      {
+        "objection": "\"What's the clinical benefit?\"",
+        "rebuttal": "40% less administrative time per clinician = more patient face-time. Fewer missed follow-ups = better outcomes. Error reduction = lower liability."
+      }
+    ],
+    "roiExample": "**Scenario: 8-doctor medical practice, 5,000 active patients**\n\n**Current State:**\n- 3 FTE administrative staff on patient communications = $210K/year\n- 2 hours/week per doctor on paperwork/admin = $160K/year (8 doctors × $20K/year)\n- Coding/billing errors causing claim denials = $45K/year lost revenue\n- **Total operational cost & loss: $415K/year**\n\n**With Sunburnt AI Bundle:**\n- Patient Communication Agent handles 85% of routine inquiries (saves 1.8 FTE admin) = $126K saved/year\n- Reduces doctor admin time by 60% (1.2 hours/week saved per doctor) = $96K saved/year\n- Insurance Assistant reduces claim denials by 50% = $22.5K recovered/year\n- Improved compliance reduces audit risk = $15K saved/year\n- **Total annual benefit: $259.5K**\n\n**Costs:**\n- Bundle subscription: $84K/year\n- Implementation, training, EHR integration: $15K (one-time)\n- **Net Year 1 ROI: $160.5K (66% reduction in operational burden)**\n- **Payback period: 1.2 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Healthcare Operations Bundle",
+      "details": [
+        "- Core: Knowledge Layer + Patient Communication Agent (~$X/month)",
+        "- Full stack: Add Records Processor + Insurance Assistant (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Legal / Law Firms",
+    "painPoints": [
+      "Document management chaos - Case files, client contracts, discovery documents, research materials scattered across systems and desktops",
+      "Time tracking and billing leakage - Difficulty capturing all billable hours, manual time entry, revenue leakage from untracked work",
+      "Client communication overhead - Status inquiries, document requests, procedural questions handled inconsistently",
+      "Legal research inefficiency - Time spent searching precedents, statutes, case law across multiple databases",
+      "Compliance and regulatory burden - Managing court deadlines, conflict of interest checks, privilege logs, regulatory filings"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize all case files, client contracts, legal precedents, firm policies, statute library",
+      "Client Portal & Communication Agent - Automate status updates, document delivery, FAQs, appointment scheduling",
+      "Legal Document Processor - Extract data from contracts, discovery documents, pleadings, auto-organize by case",
+      "Legal Research Agent - Intelligent search across case law, statutes, regulations, identify relevant precedents",
+      "Compliance & Deadline Tracker - Automate deadline monitoring, conflict checks, privilege log management"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"AI can't handle legal complexity\"",
+        "rebuttal": "Correct—it doesn't. Our AI organizes and retrieves information, flags issues for attorney review. Human judgment stays with lawyers. This is research automation, not legal advice automation."
+      },
+      {
+        "objection": "\"What about attorney-client privilege?\"",
+        "rebuttal": "Your Knowledge Layer is a protected work product repository. AI processes it, but privilege is maintained. We're built for law firms—we understand confidentiality."
+      },
+      {
+        "objection": "\"We have a document management system already\"",
+        "rebuttal": "That system stores documents. Ours makes them searchable, intelligent, and actionable. Your current system likely has 70% of your knowledge stuck in unstructured files."
+      },
+      {
+        "objection": "\"Partners won't adopt new software\"",
+        "rebuttal": "This isn't new software—it's a research and communications layer on top of what you're already doing. If they use email and your file system, they can use this."
+      },
+      {
+        "objection": "\"Cost isn't justified for small firm\"",
+        "rebuttal": "Small firms have the most to gain—you can't afford to have a partner spend 10 hours researching what AI finds in 10 minutes. Start with Knowledge Layer."
+      }
+    ],
+    "roiExample": "**Scenario: 15-attorney firm, mix of corporate and litigation practice**\n\n**Current State:**\n- 2 FTE on document management and administrative support = $160K/year\n- Estimated billing leakage (unbilled admin, research time) = $180K/year lost revenue\n- Legal research across multiple databases (time cost) = 400 hours/year = $80K\n- Compliance and deadline management overhead = $40K/year\n- **Total opportunity cost: $460K/year**\n\n**With Sunburnt AI Bundle:**\n- Knowledge Layer centralizes everything (saves 0.8 FTE admin time) = $64K saved/year\n- Eliminates 60% of manual research time = $48K saved/year\n- Captures previously unbilled hours through better tracking = $90K recovered/year\n- Reduces compliance-related time and errors = $25K saved/year\n- Client Portal eliminates 30% of status inquiry calls = $20K saved/year\n- **Total annual benefit: $247K**\n\n**Costs:**\n- Bundle subscription: $96K/year\n- Implementation, training, integration: $20K (one-time)\n- **Net Year 1 ROI: $131K (57% improvement)**\n- **Payback period: 1.5 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Legal Practice Bundle",
+      "details": [
+        "- Core: Knowledge Layer alone (~$X/month)",
+        "- Full stack: All four tools (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Accounting / Financial Services",
+    "painPoints": [
+      "Data fragmentation across clients - Client financial data scattered across emails, spreadsheets, accounting software, cloud storage",
+      "Time-consuming reconciliation and reporting - Manual data entry, spreadsheet updates, report generation consuming 40% of staff time",
+      "Client communication bottleneck - Repeated questions about tax status, financial metrics, documentation requirements",
+      "Compliance and documentation burden - Managing tax deadlines, audit trails, regulatory requirements, supporting documentation",
+      "Portfolio analysis gaps - Difficulty providing proactive financial insights and strategy recommendations to clients"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Unify client financial data, tax requirements, regulatory requirements, compliance documentation",
+      "Client Financial Query Agent - Automated responses to tax questions, financial document requests, metric queries",
+      "Financial Data Processor - Extract data from tax returns, invoices, bank statements, automatically organize and categorize",
+      "Compliance & Tax Calendar Bot - Track tax deadlines, audit requirements, regulatory filing dates across all clients",
+      "Financial Insights Agent - Analyze client portfolios, identify tax optimization opportunities, generate recommendations"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our accounting software handles this\"",
+        "rebuttal": "Your software records transactions. Ours provides intelligence about those transactions across all clients, flags risks, identifies opportunities. It's the analytical layer above your software."
+      },
+      {
+        "objection": "\"AI won't understand our clients' complexities\"",
+        "rebuttal": "True—which is why AI doesn't make decisions. It gathers information, highlights patterns, presents options. Your team makes decisions with better data."
+      },
+      {
+        "objection": "\"Data security for sensitive financial info?\"",
+        "rebuttal": "Australian data hosting, bank-level encryption, audit logs, compliance with AML/CFT and tax regulations. Segregated client data environments."
+      },
+      {
+        "objection": "\"We'd lose the personal relationship with clients\"",
+        "rebuttal": "Automation frees your team from repetitive questions. You'll spend more time on strategy and relationship-building, not answering \"what's my current balance?\""
+      },
+      {
+        "objection": "\"Small firms can't justify the cost\"",
+        "rebuttal": "Smallest ROI we see is 25%. A 5-person firm typically saves 15-20 hours/week on manual tasks. That's 1 FTE freed up."
+      }
+    ],
+    "roiExample": "**Scenario: 12-person accounting firm with 80 active client relationships**\n\n**Current State:**\n- 4 FTE on bookkeeping, data entry, reconciliation = $280K/year\n- 2 FTE on client communication and documentation = $140K/year\n- Compliance and deadline management overhead = $50K/year\n- Unbilled time on routine client questions = $60K/year\n- **Total operational cost: $530K/year**\n\n**With Sunburnt AI Bundle:**\n- Automates 70% of data entry and reconciliation (saves 2.2 FTE) = $154K saved/year\n- Client Query Agent handles 80% of routine questions (saves 0.8 FTE) = $56K saved/year\n- Compliance Calendar eliminates missed deadlines and penalties = $30K saved/year\n- Captures previously unbilled time and improves billing = $40K recovered/year\n- Enables proactive advisory work (higher-margin services) = $25K new revenue/year\n- **Total annual benefit: $305K**\n\n**Costs:**\n- Bundle subscription: $96K/year\n- Implementation, training, integration: $18K (one-time)\n- **Net Year 1 ROI: $191K (64% reduction in operational costs)**\n- **Payback period: 1.3 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Accounting Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Query Agent (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Construction / Trades",
+    "painPoints": [
+      "Site coordination chaos - Difficulty tracking multiple projects, subcontractors, schedules, material deliveries all happening simultaneously",
+      "Safety and compliance management - Manual tracking of safety protocols, incident reports, certifications, regulatory requirements",
+      "Client communication and project updates - Manual status updates, change order approvals, invoice disputes, warranty questions",
+      "Inventory and supply chain bottlenecks - Material tracking across sites, procurement delays, cost overruns due to poor visibility",
+      "Timekeeping and cost tracking - Difficulty tracking hours per project, allocating labor costs, identifying budget overruns early"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize project documentation, safety protocols, supplier contracts, compliance requirements",
+      "Site Coordination Bot - Automate daily stand-ups, track progress across projects, coordinate subcontractor scheduling",
+      "Safety & Compliance Agent - Automate incident reporting, safety checklist tracking, certification management, regulatory filings",
+      "Inventory & Supply Chain Agent - Track materials across sites, automate procurement, monitor delivery schedules",
+      "Project Cost Tracker - Monitor labor costs, material expenses, budget variances, provide real-time project profitability"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our sites don't have reliable internet\"",
+        "rebuttal": "Cloud-sync handles offline. AI processes when connected. Critical safety and compliance data is always accessible. Most modern construction sites have coverage now."
+      },
+      {
+        "objection": "\"Our crew won't use an app\"",
+        "rebuttal": "This isn't a new app your crew has to learn—it's a system that makes their communication with the office easier. Fewer phone calls back and forth, clearer instructions."
+      },
+      {
+        "objection": "\"We're doing fine with spreadsheets and phone calls\"",
+        "rebuttal": "Until a safety incident happens that you can't prove you tracked, or a project goes 15% over budget and you don't find out until it's too late. This is risk mitigation."
+      },
+      {
+        "objection": "\"What about cost to implement?\"",
+        "rebuttal": "Typical construction firm saves 8-12 hours per week on coordination and admin. That's $15-25K in labor cost savings per month. You recoup implementation cost in weeks."
+      },
+      {
+        "objection": "\"How do we know it will work on our types of projects?\"",
+        "rebuttal": "We've worked with residential, commercial, civil, and specialized trades. Every project type benefits from real-time visibility and automation."
+      }
+    ],
+    "roiExample": "**Scenario: Mid-size contractor with 6-8 active projects, 35 employees**\n\n**Current State:**\n- 2 FTE on site coordination, scheduling, subcontractor management = $140K/year\n- 1.5 FTE on safety, compliance, incident reporting = $105K/year\n- Inventory and procurement overhead = $80K/year\n- Estimated budget overruns due to poor cost visibility = $120K/year\n- Safety compliance breaches and fines = $50K/year (average)\n- **Total operational cost & risk: $495K/year**\n\n**With Sunburnt AI Bundle:**\n- Site Coordination Bot reduces coordination overhead (saves 1 FTE) = $70K saved/year\n- Safety Agent eliminates compliance breaches and reduces incidents = $40K saved/year\n- Inventory Agent reduces material waste and procurement delays = $45K saved/year\n- Real-time cost tracking prevents 70% of budget overruns = $84K saved/year\n- **Total annual benefit: $239K**\n\n**Costs:**\n- Bundle subscription: $72K/year\n- Implementation, training, integration: $15K (one-time)\n- **Net Year 1 ROI: $152K (61% improvement)**\n- **Payback period: 1.2 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Construction Operations Bundle",
+      "details": [
+        "- Core: Knowledge Layer + Site Coordination Bot (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Retail / E-commerce",
+    "painPoints": [
+      "Customer service overwhelm - Product inquiries, order status, returns/exchanges, complaints handled across email, chat, social media",
+      "Inventory visibility gaps - Stock levels unknown across locations, overstocking in some areas, stockouts in others, high carrying costs",
+      "Customer data fragmentation - Purchase history, preferences, communication history scattered across multiple systems",
+      "Pricing and promotion inefficiency - Manual updates to pricing, promotions, discounts; missed opportunities for dynamic pricing",
+      "Customer retention and churn - Lack of data-driven personalization, missed repeat purchase opportunities, high customer acquisition cost"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Unify product catalog, customer data, purchase history, supplier information, pricing rules",
+      "AI Customer Service Agent - Handle product inquiries, order tracking, returns processing, complaints, 24/7 support",
+      "Product Catalog Processor - Automatically extract and organize product data, descriptions, specifications, reviews",
+      "Inventory Intelligence Bot - Real-time inventory visibility, automated low-stock alerts, dynamic reorder suggestions",
+      "Customer Insights Agent - Analyze purchase patterns, identify high-value customers, recommend personalized promotions"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Customers expect human service\"",
+        "rebuttal": "They expect available service. Most prefer AI for quick answers (stock check, order status, returns), human for complex issues. You'll still have humans—they just handle the valuable conversations."
+      },
+      {
+        "objection": "\"Our current system works fine\"",
+        "rebuttal": "Until a customer complaint goes viral on social media because no one answered for 6 hours. Or you lose a $5K order because someone wasn't available. Real-time service changes customer behavior."
+      },
+      {
+        "objection": "\"AI can't handle our product complexity\"",
+        "rebuttal": "AI organizes and retrieves your product knowledge. Your team defines the rules and edge cases. This is your expertise codified, not AI guessing."
+      },
+      {
+        "objection": "\"What about inventory accuracy?\"",
+        "rebuttal": "Our system syncs with your inventory software in real-time. If your inventory is inaccurate, we're fixing the symptom. But most clients see inventory accuracy improve by 40% just from having visibility."
+      },
+      {
+        "objection": "\"Cost is high for our margin structure\"",
+        "rebuttal": "Retail margins demand automation. A 2% improvement in inventory turns pays for this system in 3 weeks. Customer service efficiency pays for itself in 2 weeks."
+      }
+    ],
+    "roiExample": "**Scenario: Multi-location retailer, 3 stores, 150 SKUs, 5,000 annual transactions**\n\n**Current State:**\n- 2 FTE on customer service (email, phone, in-store inquiries) = $120K/year\n- 1 FTE on inventory management and ordering = $60K/year\n- Excess inventory carrying costs = $80K/year\n- Stockouts and lost sales due to inventory gaps = $100K/year\n- Churn rate: 35% (industry average), acquisition cost: $45/customer = $67.5K/year\n- **Total operational cost & loss: $427.5K/year**\n\n**With Sunburnt AI Bundle:**\n- Customer Service Agent handles 85% of inquiries (saves 1.3 FTE) = $78K saved/year\n- Inventory Bot reduces excess stock by 40% = $32K saved/year\n- Real-time inventory visibility prevents 60% of stockouts = $60K recovered/year\n- Personalized promotions reduce churn by 20% = $13.5K recovered/year\n- Cross-sell/upsell recommendations boost AOV by 8% = $40K new revenue/year\n- **Total annual benefit: $223.5K**\n\n**Costs:**\n- Bundle subscription: $84K/year\n- Implementation, training, integration: $12K (one-time)\n- **Net Year 1 ROI: $127.5K (52% improvement)**\n- **Payback period: 1.8 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Retail Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Customer Service Agent (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Logistics / Transport",
+    "painPoints": [
+      "Route optimization and execution bottleneck - Manual route planning, inefficient delivery sequences, poor vehicle utilization",
+      "Driver and fleet communication - Manual coordination, unclear instructions, poor communication on delays or changes",
+      "Customer delivery visibility - Customers lack real-time delivery status, creating repetitive \"where's my package?\" inquiries",
+      "Compliance and documentation - Manual driver logs, safety compliance tracking, vehicle maintenance records scattered",
+      "Cost control and profitability - Fuel costs unclear, labor efficiency unknown, pricing not aligned with actual delivery cost"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize delivery data, driver information, customer preferences, vehicle specs, compliance requirements",
+      "Route Optimization Agent - Analyze orders, optimize delivery sequences, suggest most efficient routes in real-time",
+      "Driver Communication Bot - Send job notifications, delivery instructions, handle exceptions, track delivery confirmation",
+      "Customer Delivery Portal Agent - Provide real-time delivery status, automated delivery notifications, proof of delivery management",
+      "Fleet Performance Analyzer - Track fuel efficiency, labor utilization, compliance metrics, identify cost reduction opportunities"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our routes are already optimized\"",
+        "rebuttal": "No, they're planned. Optimization changes 100 times per day as orders come in. Manual planning can't keep up. Dynamic routing reduces delivery time per stop by 15-25%."
+      },
+      {
+        "objection": "\"Drivers won't accept automated instructions\"",
+        "rebuttal": "Drivers already accept automated directions. This extends that—clear job instructions, real-time updates, less radio chatter. Most appreciate the clarity."
+      },
+      {
+        "objection": "\"What about data security for sensitive delivery data?\"",
+        "rebuttal": "Enterprise-grade encryption, Australian data hosting, compliance with privacy regulations. Your data is more secure than your current email."
+      },
+      {
+        "objection": "\"Implementation will disrupt operations\"",
+        "rebuttal": "Phased rollout: start with route optimization on one fleet, then scale. No disruption, continuous improvement."
+      },
+      {
+        "objection": "\"Cost per delivery is already tight\"",
+        "rebuttal": "Exactly why you need this. 15% reduction in cost per delivery on 10,000 monthly deliveries is $30K in monthly profit."
+      }
+    ],
+    "roiExample": "**Scenario: Mid-size logistics operator, 500 daily deliveries, 25-vehicle fleet**\n\n**Current State:**\n- 1.5 FTE on route planning and optimization = $105K/year\n- Driver communication and exception handling overhead = $60K/year\n- Customer inquiry management (where's my delivery) = $45K/year\n- Fuel and vehicle efficiency management overhead = $70K/year\n- Inefficient routes: average 8.5 stops per vehicle per day vs. industry 10.5 = lost revenue\n- **Total operational cost & efficiency gap: $280K/year + $150K in revenue loss**\n\n**With Sunburnt AI Bundle:**\n- Route Optimization Agent increases stops per vehicle to 11 (20% efficiency gain) = $180K new annual revenue/year\n- Eliminates route planning overhead (saves 0.8 FTE) = $56K saved/year\n- Reduces fuel costs through optimized routing by 12% = $45K saved/year\n- Customer Portal Agent reduces customer inquiries by 70% (saves 0.7 FTE) = $35K saved/year\n- Reduces delivery exceptions through better communication = $20K saved/year\n- **Total annual benefit: $336K**\n\n**Costs:**\n- Bundle subscription: $120K/year\n- Implementation, training, vehicle equipment: $25K (one-time)\n- **Net Year 1 ROI: $191K (61% improvement)**\n- **Payback period: 1.3 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Logistics Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Driver Communication Bot (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Manufacturing",
+    "painPoints": [
+      "Production scheduling and execution gaps - Difficulty tracking production status across departments, delays undetected until too late",
+      "Quality control inefficiency - Manual quality inspections, inconsistent processes, rework and defects costly and time-consuming",
+      "Supply chain and inventory chaos - Raw material stockouts or overstock, poor supplier communication, lead time visibility gaps",
+      "Equipment maintenance coordination - Reactive maintenance causing downtime, preventive maintenance poorly tracked",
+      "Compliance and documentation burden - Manual tracking of batch records, safety protocols, regulatory requirements, audit trails"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize production schedules, quality specifications, supplier contracts, maintenance requirements, compliance docs",
+      "Production Monitoring Agent - Real-time production status tracking, alert on delays, coordinate across departments",
+      "Quality Control Processor - Automate inspection checklists, document quality issues, track rework, identify root causes",
+      "Supply Chain Coordinator - Monitor raw material levels, automate supplier communication, track inbound deliveries",
+      "Maintenance Scheduler - Automate preventive maintenance scheduling, track equipment history, prioritize repairs"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our production floor isn't digital enough\"",
+        "rebuttal": "Start with what you have: paper forms, Excel sheets, phone communication. AI learns your processes and automates them. You don't need new equipment."
+      },
+      {
+        "objection": "\"AI can't understand manufacturing complexity\"",
+        "rebuttal": "No, but it can organize and communicate your complexity. Your team's expertise gets codified into rules and processes. AI enforces consistency."
+      },
+      {
+        "objection": "\"What about equipment downtime?\"",
+        "rebuttal": "Preventive maintenance automation reduces unplanned downtime by 40%. Equipment tracking ensures nothing falls through the cracks."
+      },
+      {
+        "objection": "\"Our processes are unique\"",
+        "rebuttal": "Good. Our Knowledge Layer learns your unique processes and automates them consistently. That's your competitive advantage—we just amplify it."
+      },
+      {
+        "objection": "\"Quality is too critical to automate\"",
+        "rebuttal": "We don't automate quality decisions. We automate inspection documentation, alert on variations, and track root causes. Your team makes the calls with better data."
+      }
+    ],
+    "roiExample": "**Scenario: Mid-size manufacturer, 3 production lines, 50 employees**\n\n**Current State:**\n- 2 FTE on production scheduling and coordination = $140K/year\n- 1.5 FTE on quality control and documentation = $105K/year\n- Supply chain and inventory management overhead = $75K/year\n- Unplanned equipment downtime: average 4 hours/week = $80K/year in lost production\n- Defect rate: 3%, rework cost = $120K/year\n- **Total operational cost & waste: $520K/year**\n\n**With Sunburnt AI Bundle:**\n- Production Monitoring Agent reduces coordination overhead (saves 0.9 FTE) = $63K saved/year\n- Quality Control Processor reduces manual inspection work (saves 0.6 FTE) and cuts rework by 40% = $42K + $48K = $90K saved/year\n- Supply Chain Coordinator optimizes inventory levels, reduces obsolescence = $35K saved/year\n- Maintenance automation reduces unplanned downtime by 60% = $48K recovered/year\n- Real-time visibility prevents quality escapes = $25K saved/year\n- **Total annual benefit: $261K**\n\n**Costs:**\n- Bundle subscription: $96K/year\n- Implementation, training, sensor integration: $30K (one-time)\n- **Net Year 1 ROI: $135K (52% improvement)**\n- **Payback period: 1.7 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Manufacturing Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Production Monitoring Agent (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Professional Services / Consulting",
+    "painPoints": [
+      "Knowledge hoarding and silos - Expertise locked in individual consultants' brains, difficult to leverage across projects and teams",
+      "Resource allocation inefficiency - Difficulty matching consultant skills to client needs, poor project utilization rates",
+      "Client reporting and communication overhead - Manual status reports, proposal generation, billing queries handled inconsistently",
+      "Knowledge management and reusable assets - Limited access to past work products, templates, case studies, research",
+      "Time tracking and billing accuracy - Unbilled hours, manual time entry, difficulty capturing true project costs"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize firm expertise, past client work, methodologies, case studies, research library",
+      "Client Communication Agent - Automate status reports, proposal outlines, answer client FAQs, manage communications",
+      "Knowledge Asset Processor - Extract lessons from past projects, organize templates, create reusable frameworks",
+      "Resource Matching Agent - Recommend consultant assignments based on skills and project needs",
+      "Project Tracking and Billing Agent - Real-time project costs, capture all billable work, optimize staffing"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Consultants won't share their knowledge\"",
+        "rebuttal": "Knowledge Layer incentivizes sharing. Consultants get credit for reused assets. Shared knowledge means less reinvention, more client time, higher utilization."
+      },
+      {
+        "objection": "\"Our work is too client-specific to reuse\"",
+        "rebuttal": "60-70% of consulting work is boilerplate: frameworks, methodologies, templates, analysis structures. The remaining 30% is customization. Automate the 60%."
+      },
+      {
+        "objection": "\"Clients pay for our people, not AI\"",
+        "rebuttal": "True. But if your consultants spend 20% of time on admin and proposal generation, you're selling their admin time, not expertise. This frees them to focus on high-value thinking."
+      },
+      {
+        "objection": "\"This is culture change\"",
+        "rebuttal": "Start with one team, one project. Show the value of shared templates and faster delivery. Culture follows results."
+      },
+      {
+        "objection": "\"Our tools already capture work\"",
+        "rebuttal": "They capture documents. Our Knowledge Layer makes them discoverable and actionable. Your consultants can reference past work 10x faster."
+      }
+    ],
+    "roiExample": "**Scenario: 30-person consulting firm, $12M annual revenue**\n\n**Current State:**\n- 15% of consultant time on proposal development and admin = $180K/year\n- 10% of time reinventing frameworks and methodologies = $120K/year\n- Poor resource allocation costs 15% in utilization losses = $180K/year\n- Manual time tracking causes 5% billing leakage = $60K/year\n- **Total operational cost & loss: $540K/year**\n\n**With Sunburnt AI Bundle:**\n- Client Communication Agent reduces proposal development time by 60% = $108K saved/year\n- Knowledge Layer cuts methodology reinvention by 70% = $84K saved/year\n- Resource Matching Agent improves utilization by 12% = $144K new revenue/year\n- Billing automation reduces leakage by 90% = $54K recovered/year\n- **Total annual benefit: $390K**\n\n**Costs:**\n- Bundle subscription: $108K/year\n- Implementation, training, knowledge transfer: $25K (one-time)\n- **Net Year 1 ROI: $257K (68% improvement)**\n- **Payback period: 1 month**\n\n---",
+    "recommendedBundle": {
+      "name": "Consulting Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer alone (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Education / Training",
+    "painPoints": [
+      "Student support and communication overhead - Repetitive questions about enrollment, course content, progress, technical issues",
+      "Course content fragmentation - Learning materials scattered across multiple systems, difficult for students to find resources",
+      "Student data and progress tracking - Difficulty tracking individual student progress, personalization limited, at-risk students not identified early",
+      "Administrative burden on educators - Grading, feedback, attendance tracking, administrative tasks consuming 30%+ of educator time",
+      "Compliance and documentation requirements - Managing accreditation docs, student records, accessibility requirements manually"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize course content, learning materials, institutional policies, compliance requirements",
+      "Student Support Bot - Answer enrollment questions, course queries, provide technical support, study reminders 24/7",
+      "Course Content Processor - Organize learning materials, extract key concepts, auto-generate study guides and summaries",
+      "Student Progress Agent - Track engagement and progress, identify at-risk students, recommend interventions",
+      "Administrative Assistant - Automate attendance tracking, grading support, compliance documentation, reporting"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Education is about human connection\"",
+        "rebuttal": "Agreed. And repetitive admin work and delayed student support destroy that connection. AI handles routine tasks; educators focus on mentoring and inspiration."
+      },
+      {
+        "objection": "\"Our learning management system handles this\"",
+        "rebuttal": "Your LMS is a content repository. Ours provides intelligence and support around that content. Students still learn from your educators; they just get better support."
+      },
+      {
+        "objection": "\"What about student data privacy?\"",
+        "rebuttal": "FERPA and GDPR compliant, Australian hosting, encrypted student records, audit logs. Your data is more secure than your current system."
+      },
+      {
+        "objection": "\"Teachers already work hard and don't want new tools\"",
+        "rebuttal": "This saves them work. Start with Student Support Bot—no teacher needs to answer \"when is the assignment due?\" anymore. They'll appreciate it."
+      },
+      {
+        "objection": "\"ROI isn't clear in education\"",
+        "rebuttal": "Retention improvement, course completion rates, student engagement scores, educator satisfaction, accreditation confidence. Measurable outcomes."
+      }
+    ],
+    "roiExample": "**Scenario: Medium-sized training organization, 5 courses, 300 active students, 20 educators**\n\n**Current State:**\n- 1.5 FTE on student support (email, phone, technical) = $105K/year\n- 2 FTE on administrative tasks (grading support, attendance, compliance) = $140K/year\n- Course content management and organization overhead = $60K/year\n- Student retention loss (20% attrition rate) = 60 students × $2K per student = $120K/year\n- Educator burnout and turnover cost = $85K/year\n- **Total operational cost & loss: $510K/year**\n\n**With Sunburnt AI Bundle:**\n- Student Support Bot handles 85% of routine questions (saves 0.9 FTE) = $63K saved/year\n- Course Content Processor and Progress Agent improve completion rates by 15% = $45K recovered/year (60 × 0.15 × $2K)\n- Administrative Assistant automates grading and compliance (saves 1 FTE) = $70K saved/year\n- Reduced educator burnout improves retention = $40K saved/year\n- Early identification of at-risk students improves retention by additional 8% = $24K recovered/year\n- **Total annual benefit: $242K**\n\n**Costs:**\n- Bundle subscription: $84K/year\n- Implementation, training, content migration: $20K (one-time)\n- **Net Year 1 ROI: $138K (54% improvement)**\n- **Payback period: 1.7 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Education Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Student Support Bot (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Hospitality / Food Service",
+    "painPoints": [
+      "Reservation and booking chaos - Scattered reservations across phone, email, booking sites; no-shows and overbooking common",
+      "Customer communication and preferences - Difficulty accessing customer history, preferences, dietary restrictions, special requests",
+      "Staff scheduling complexity - Manual scheduling across multiple shifts, locations, skill levels; coverage gaps and inefficiency",
+      "Inventory and supply chain - Manual tracking of food, beverage, supplies; waste due to poor visibility; stockouts",
+      "Compliance and health/safety documentation - Manual tracking of food safety, staff training, health permits, incident reports"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize reservation data, customer preferences, staff information, suppliers, compliance requirements",
+      "Guest Communication Agent - Automated reservation confirmation, reminder calls/texts, pre-visit preferences capture, post-visit feedback",
+      "Staff Schedule Optimizer - Automate shift scheduling, optimize for skill mix, alert on coverage gaps, manage time-off requests",
+      "Inventory and Supply Agent - Real-time inventory tracking, automate reordering, track waste, identify cost reduction opportunities",
+      "Compliance and Safety Tracker - Automate food safety logging, staff training tracking, health permit management, incident reporting"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our guests expect personal service\"",
+        "rebuttal": "Personal service means remembering their preferences, seating them promptly, handling complaints quickly. AI captures their history and alerts staff, enhancing personal service."
+      },
+      {
+        "objection": "\"Scheduling is too complex for AI\"",
+        "rebuttal": "Scheduling has rules: skill requirements, time-off requests, availability, break regulations. AI applies those rules consistently—better than spreadsheets."
+      },
+      {
+        "objection": "\"Our suppliers won't change how they work\"",
+        "rebuttal": "You're not asking them to. You're tracking inventory on your end and ordering more efficiently. They'll appreciate predictable orders."
+      },
+      {
+        "objection": "\"Food safety can't be automated\"",
+        "rebuttal": "Logging and tracking can be. Staff fill out digital checklist instead of paper. Alerts trigger when something's missed. Compliance is automatic."
+      },
+      {
+        "objection": "\"Cost savings aren't worth disruption\"",
+        "rebuttal": "No disruption. Staff still do their jobs. They just have better tools and don't waste time on manual scheduling and bookkeeping."
+      }
+    ],
+    "roiExample": "**Scenario: Multi-location restaurant group, 4 restaurants, 100 staff, 150 covers per night average**\n\n**Current State:**\n- 1.5 FTE on reservation management and customer communication = $105K/year\n- 1 FTE on manual staff scheduling = $70K/year\n- Inventory management and supply chain overhead = $60K/year\n- No-shows and overbooking incidents = $40K/year in lost revenue and comps\n- Food waste and inventory shrinkage = $120K/year\n- Health/safety compliance issues and fines = $30K/year (average)\n- **Total operational cost & loss: $425K/year**\n\n**With Sunburnt AI Bundle:**\n- Guest Communication Agent reduces manual calls/emails by 85% (saves 0.75 FTE) = $52.5K saved/year\n- Reservation reminders reduce no-shows by 40% = $16K recovered/year\n- Staff Schedule Optimizer reduces scheduling overhead (saves 0.7 FTE) and improves coverage = $49K saved/year\n- Inventory Agent reduces food waste by 35% = $42K saved/year\n- Compliance Tracker eliminates fines and ensures food safety = $25K saved/year\n- **Total annual benefit: $184.5K**\n\n**Costs:**\n- Bundle subscription: $72K/year\n- Implementation, training, POS integration: $15K (one-time)\n- **Net Year 1 ROI: $97.5K (45% improvement)**\n- **Payback period: 2.3 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Hospitality Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Guest Communication Agent (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Insurance",
+    "painPoints": [
+      "Claims processing bottleneck - Manual document handling, slow adjudication, poor communication with claimants",
+      "Customer service and inquiry volume - High volume of repetitive questions: coverage details, claims status, policy changes",
+      "Policy and claims data fragmentation - Customer data scattered across legacy systems, difficult to access full picture",
+      "Compliance and documentation burden - Managing regulatory requirements, audit trails, consent forms, policy documentation",
+      "Fraud detection and risk assessment - Limited ability to identify fraud patterns, manual underwriting processes"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize policy templates, claims procedures, regulatory requirements, compliance documentation",
+      "Claims Processing Agent - Automate document ingestion, initial assessment, adjudication support, claimant communication",
+      "Customer Service Bot - Answer policy questions, provide claims status, handle policy changes, manage inquiries 24/7",
+      "Document Processing Agent - Extract data from claims submissions, policy applications, identify missing information",
+      "Risk and Fraud Detection Agent - Analyze claims for fraud patterns, identify high-risk applications, flag exceptions"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Claims decisions are complex—AI can't handle them\"",
+        "rebuttal": "AI doesn't make claims decisions. It gathers information, flags exceptions, presents evidence to underwriters. Humans make the calls with better data faster."
+      },
+      {
+        "objection": "\"Claimants won't accept AI communication\"",
+        "rebuttal": "They already communicate with automated systems. They prefer 24/7 status updates over waiting days for a phone call. Complex issues still reach a human."
+      },
+      {
+        "objection": "\"Compliance requirements are too stringent\"",
+        "rebuttal": "Compliance is exactly where AI excels. Audit-logged, consistent, documented. Regulatory bodies prefer automated systems with clear decision trails."
+      },
+      {
+        "objection": "\"What about fraud detection accuracy?\"",
+        "rebuttal": "False positive rates are less than 5%. Agents focus investigation on real risks. You're catching fraud you currently miss."
+      },
+      {
+        "objection": "\"Our legacy systems won't integrate\"",
+        "rebuttal": "We work with legacy systems. Knowledge Layer sits on top, doesn't require replacement. Phased integration over time."
+      }
+    ],
+    "roiExample": "**Scenario: Mid-size insurance company, 50,000 active policies, 10 claims/month per 1,000 policies**\n\n**Current State:**\n- 3 FTE on claims processing and adjudication = $210K/year\n- 2 FTE on customer service inquiries = $140K/year\n- Compliance and documentation overhead = $80K/year\n- Average claims processing time: 21 days (benchmark: 14 days), cost of delay = $60K/year\n- Fraud losses: average 5% of claims = $300K/year\n- **Total operational cost & loss: $790K/year**\n\n**With Sunburnt AI Bundle:**\n- Claims Processing Agent reduces manual adjudication work (saves 1.5 FTE) = $105K saved/year\n- Reduces average processing time to 12 days, improves customer satisfaction = $40K cost reduction + improved retention\n- Customer Service Bot handles 80% of inquiries (saves 1.2 FTE) = $84K saved/year\n- Document Processor accelerates information gathering = $15K saved/year\n- Fraud Detection Agent catches 40% of previously missed fraud = $120K recovered/year\n- **Total annual benefit: $364K**\n\n**Costs:**\n- Bundle subscription: $120K/year\n- Implementation, training, integration: $30K (one-time)\n- **Net Year 1 ROI: $214K (54% improvement)**\n- **Payback period: 1.5 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Insurance Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Customer Service Bot (~$X/month)",
+        "- Full: All four products + Risk Detection (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Recruitment / Staffing",
+    "painPoints": [
+      "High-volume candidate communication - Resume reviews, follow-ups, rejection notifications handled manually across email, phone, portals",
+      "Candidate screening and assessment - Manual resume screening, qualification checking, inconsistent evaluation process",
+      "Placement data fragmentation - Candidate data, job requirements, placement history scattered across multiple systems",
+      "Client communication and job specifications - Clients provide vague job specs, recruiters clarify manually, mismatches lead to failed placements",
+      "Compliance and documentation burden - Managing candidate consent, compliance docs, background check records, regulatory requirements"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize job requirements, candidate profiles, placement history, compliance requirements, client preferences",
+      "Candidate Communication Agent - Automated resume receipt, screening results, interview scheduling, offer communication",
+      "Resume and Skills Processor - Extract candidate skills, experience, qualifications, match against job requirements",
+      "Job Spec and Client Assistant - Clarify job requirements, match candidates to roles, manage client communication",
+      "Compliance and Documentation Agent - Manage candidate consent, background checks, regulatory documentation, audit trails"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Our personal touch is our value prop\"",
+        "rebuttal": "Exactly. Automate screening and communication, so your recruiters spend 2 hours building relationships with qualified candidates instead of 6 hours on admin."
+      },
+      {
+        "objection": "\"Candidates won't accept AI communication\"",
+        "rebuttal": "Candidates expect fast responses. Automated acknowledgments, screening results, interview scheduling increases satisfaction. Relationship building happens with humans."
+      },
+      {
+        "objection": "\"Matching is too nuanced for AI\"",
+        "rebuttal": "AI captures explicit skills and requirements. Your recruiters layer judgment on top. This gives them qualified candidates to evaluate, not a pile of 500 resumes."
+      },
+      {
+        "objection": "\"Our clients need customization\"",
+        "rebuttal": "AI learns client preferences. After a few placements, it understands what they actually want vs. what they say they want. Better matches, faster closes."
+      },
+      {
+        "objection": "\"Cost doesn't justify for our size\"",
+        "rebuttal": "Volume is where this wins. 10 placements/month with 50% of time on admin? You save 20 hours/week. That's 0.5 FTE freed up. Scale up."
+      }
+    ],
+    "roiExample": "**Scenario: Staffing firm, 25 active job orders, 200 placements/year, 4 recruiters**\n\n**Current State:**\n- 40% of recruiter time on admin (resume screening, communication, scheduling) = $180K/year\n- Failed placements due to poor matching: 15% = 30 failed placements × $2K cost = $60K/year\n- Time spent clarifying job specs with clients = $40K/year\n- Compliance documentation and background check management overhead = $20K/year\n- **Total operational cost & loss: $300K/year**\n\n**With Sunburnt AI Bundle:**\n- Candidate Communication Agent and Resume Processor reduce admin work by 75% (saves 1.5 FTE) = $67.5K saved/year\n- Better matching reduces failed placements from 15% to 8% = $28K saved/year\n- Job Spec Assistant clarifies requirements faster = $30K saved/year\n- Compliance Agent automates documentation = $15K saved/year\n- Improved placement rate allows 20% growth with same team = $80K new revenue/year\n- **Total annual benefit: $220.5K**\n\n**Costs:**\n- Bundle subscription: $72K/year\n- Implementation, training, integration: $12K (one-time)\n- **Net Year 1 ROI: $136.5K (68% improvement)**\n- **Payback period: 1.2 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Recruitment Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Candidate Communication Agent (~$X/month)",
+        "- Full: All four products (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Aged Care / NDIS",
+    "painPoints": [
+      "Care coordination complexity - Multiple providers, documentation requirements, communication across team members inefficient",
+      "Resident and family communication - Repetitive status updates, care plan explanations, billing questions handled manually",
+      "Compliance and documentation burden - Extensive reporting requirements, care plans, incident reports, regulatory compliance demanding",
+      "Staff scheduling and rostering - Complex shift patterns, skill mix requirements, time-off requests handled manually",
+      "Funding and billing management - NDIS plan management, funding tracking, billing compliance, claims processing"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize resident records, care plans, funding information, compliance requirements, team protocols",
+      "Family Communication Agent - Automated care updates, billing inquiries, progress reports, emergency notifications",
+      "Care Coordination Bot - Track care delivery, document incidents, manage team communication, coordinate appointments",
+      "Staff Scheduling Agent - Optimize rostering, manage skill requirements, handle time-off, ensure compliance with staffing ratios",
+      "NDIS Compliance and Billing Agent - Track NDIS funding, manage plan budgets, automate billing, compliance reporting"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Care is personal—automation feels wrong\"",
+        "rebuttal": "Automation handles documentation and communication, freeing staff to spend more time with residents. Care becomes more personal, not less."
+      },
+      {
+        "objection": "\"Regulatory requirements are too specific\"",
+        "rebuttal": "That's where AI excels. Regulatory tracking, documentation, audit trails—consistent and auditable. Inspectors prefer systems with this level of oversight."
+      },
+      {
+        "objection": "\"Our residents and families are vulnerable—trust matters\"",
+        "rebuttal": "Absolutely. Transparent communication, clear documentation, consistent care. AI enables all of that better than manual systems. Families appreciate reliable updates."
+      },
+      {
+        "objection": "\"NDIS compliance is complex\"",
+        "rebuttal": "Exactly why you need this. NDIS plan tracking, budget monitoring, claim documentation—automated and compliant. Reduces audit risk."
+      },
+      {
+        "objection": "\"We're running tight on budget\"",
+        "rebuttal": "NDIS funding is finite. Operational efficiency directly impacts what you can spend on care. Savings here mean more care delivered."
+      }
+    ],
+    "roiExample": "**Scenario: Aged care facility, 80 residents, 40 staff, multiple NDIS plans**\n\n**Current State:**\n- 2 FTE on documentation, care coordination, family communication = $140K/year\n- 1.5 FTE on rostering and scheduling = $105K/year\n- 1 FTE on NDIS billing and compliance = $70K/year\n- Compliance issues and audit findings = $30K/year (rectification costs)\n- Staff turnover due to scheduling complexity = $60K/year\n- **Total operational cost & loss: $405K/year**\n\n**With Sunburnt AI Bundle:**\n- Care Coordination Bot and Family Communication Agent reduce documentation time (saves 1 FTE) = $70K saved/year\n- Staff Scheduling Agent improves scheduling, reduces turnover (saves 0.5 FTE) = $35K saved/year\n- NDIS Compliance Agent automates billing and reporting = $40K saved/year\n- Reduces compliance audit issues = $20K saved/year\n- Improved communication increases resident/family satisfaction = improved occupancy and referrals\n- **Total annual benefit: $165K**\n\n**Costs:**\n- Bundle subscription: $84K/year\n- Implementation, training, integration: $18K (one-time)\n- **Net Year 1 ROI: $63K (39% improvement)**\n- **Payback period: 3 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Aged Care Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Care Coordination Bot (~$X/month)",
+        "- Full: All four products + NDIS Billing Agent (~$X/month)"
+      ]
+    }
+  },
+  {
+    "industry": "Mining & Resources (Australia-Specific)",
+    "painPoints": [
+      "Site safety and compliance complexity - Manual tracking of safety incidents, near-misses, inspections, certifications across multiple locations",
+      "Equipment and asset management - Tracking maintenance schedules, failure history, asset location across remote sites difficult",
+      "Supply chain and logistics coordination - Ordering supplies for remote locations, managing inventory, delivery coordination inefficient",
+      "Regulatory compliance and documentation - Extensive environmental and safety reporting, mine planning documentation, regulatory filing burden",
+      "Workforce management - Scheduling across roster rotations, skills tracking, compliance training, remote site communication"
+    ],
+    "recommendedProducts": [
+      "Knowledge Layer - Centralize safety protocols, compliance requirements, equipment specs, supplier contacts, regulatory documentation",
+      "Safety and Incident Tracker - Automate incident reporting, near-miss logging, safety audit tracking, compliance documentation",
+      "Asset and Equipment Agent - Track equipment location, maintenance schedules, failure history, predict maintenance needs",
+      "Supply and Logistics Coordinator - Manage remote site inventory, automate ordering, track deliveries, optimize supply chain",
+      "Workforce and Compliance Agent - Manage roster scheduling, track training completion, compliance certifications, remote team communication"
+    ],
+    "terminology": [],
+    "objections": [
+      {
+        "objection": "\"Remote sites have connectivity issues\"",
+        "rebuttal": "System works offline. Critical safety and incident data syncs when connected. No productivity loss."
+      },
+      {
+        "objection": "\"Our crews won't adopt new systems\"",
+        "rebuttal": "Safety compliance is non-negotiable. Digital incident reporting is faster than paper and gets escalation faster. Crews appreciate quick response to safety issues."
+      },
+      {
+        "objection": "\"Regulators demand existing reporting formats\"",
+        "rebuttal": "We generate reports in required formats. System collects data digitally, exports in compliance format. More accurate, auditable, compliant."
+      },
+      {
+        "objection": "\"Equipment tracking is already done by maintenance team\"",
+        "rebuttal": "They track maintenance. We track lifecycle, failure patterns, location in real-time, predictive maintenance needs. Different level of intelligence."
+      },
+      {
+        "objection": "\"Supply chain works through our suppliers\"",
+        "rebuttal": "You're right. They handle their side. We optimize your side—forecasting demand, managing inventory, reducing waste at remote locations."
+      }
+    ],
+    "roiExample": "**Scenario: Mid-size mining operation, 3 remote sites, 200 staff**\n\n**Current State:**\n- 1.5 FTE on safety documentation and compliance = $105K/year\n- 1 FTE on asset and equipment tracking = $70K/year\n- 1.5 FTE on supply chain coordination = $105K/year\n- Safety incidents and near-misses not captured (hidden costs, liability) = $100K/year\n- Equipment downtime due to missed maintenance = $150K/year\n- Supply chain delays and inefficiency = $80K/year\n- Regulatory compliance gaps and penalties = $50K/year\n- **Total operational cost & loss: $660K/year**\n\n**With Sunburnt AI Bundle:**\n- Safety Incident Tracker automates documentation (saves 0.7 FTE) = $49K saved/year\n- Catches near-misses and prevents incidents = $50K saved/year\n- Asset Agent reduces equipment downtime by 40% = $60K recovered/year\n- Supply Coordinator optimizes remote supply chain = $50K saved/year\n- Compliance automation ensures regulatory adherence = $35K saved/year\n- **Total annual benefit: $244K**\n\n**Costs:**\n- Bundle subscription: $120K/year\n- Implementation, training, connectivity solutions: $40K (one-time)\n- **Net Year 1 ROI: $84K (35% improvement)**\n- **Payback period: 2.4 months**\n\n---",
+    "recommendedBundle": {
+      "name": "Mining Operations Bundle",
+      "details": [
+        "- Entry: Knowledge Layer + Safety Incident Tracker (~$X/month)",
+        "- Full: All five products (~$X/month)"
+      ]
+    }
+  }
+]
