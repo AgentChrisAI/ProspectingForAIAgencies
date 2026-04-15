@@ -18,6 +18,20 @@ const defaultForm = {
   notes: '',
 };
 
+const demoProspect = {
+  companyName: 'Acme Dental Group',
+  websiteUrl: 'https://www.acmedentalgroup.com',
+  contactName: 'Sarah Nguyen',
+  role: 'Operations Director',
+  industry: 'Dental clinics',
+  teamSize: '45 staff across 3 locations',
+  revenue: '$8M-$15M',
+  location: 'Brisbane',
+  currentTools: 'Cliniko, Xero, Google Workspace, manual enquiry triage',
+  painPoints: 'Lead follow-up inconsistency, front-desk overload, fragmented reporting, no unified patient enquiry pipeline.',
+  notes: 'Discovery call tomorrow. Likely interested in growth efficiency, admin load reduction, and better conversion from web enquiries.',
+};
+
 export function AnalystWorkbench({
   knowledgeSummary,
 }: {
@@ -35,9 +49,14 @@ export function AnalystWorkbench({
   const [loading, setLoading] = useState(false);
 
   const tierSummary = useMemo(
-    () => Object.entries(knowledgeSummary.tierCounts).map(([tier, count]) => `${tier}: ${count}`),
+    () =>
+      Object.entries(knowledgeSummary.tierCounts)
+        .map(([tier, count]) => `${tier} ${count}`)
+        .join(' · '),
     [knowledgeSummary.tierCounts]
   );
+
+  const hasFilledCore = Boolean(form.companyName || form.websiteUrl || form.contactName || form.role || form.painPoints);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,88 +87,54 @@ export function AnalystWorkbench({
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <span className={styles.kicker}>Sunburnt AI internal sales ops</span>
-          <h1>Clearer prospect intelligence. Faster recommendation output.</h1>
+      <section className={styles.topbar}>
+        <div>
+          <span className={styles.kicker}>Sunburnt AI · prospect operator</span>
+          <h1>Prospect brief in. Sales-ready recommendation out.</h1>
           <p>
-            Capture a prospect, scrape the public site, and turn the signal into a structured recommendation brief
-            built for live calls, follow-ups, and proposal prep.
+            A disciplined internal workspace for turning public-site signal and call context into a tighter sales brief,
+            clearer angle, and a more credible next step.
           </p>
-          <div className={styles.heroMetaRow}>
-            <div className={styles.heroMetric}>
-              <span>Knowledge base</span>
-              <strong>{knowledgeSummary.products + knowledgeSummary.stacks}</strong>
-              <small>products + stacks ready</small>
-            </div>
-            <div className={styles.heroMetric}>
-              <span>Coverage</span>
-              <strong>{knowledgeSummary.industries}</strong>
-              <small>industry playbooks loaded</small>
-            </div>
-            <div className={styles.heroMetric}>
-              <span>Workflow</span>
-              <strong>2-step</strong>
-              <small>intake left, decision brief right</small>
-            </div>
-          </div>
         </div>
 
-        <aside className={styles.heroCard}>
-          <div className={styles.heroCardHeader}>
-            <div>
-              <span className={styles.eyebrow}>Knowledge loaded</span>
-              <h2>Analysis environment</h2>
-            </div>
-            <p>Lean, operator-focused context for fast prospect triage.</p>
+        <div className={styles.topbarMeta}>
+          <div className={styles.topbarCard}>
+            <span>Knowledge coverage</span>
+            <strong>{knowledgeSummary.industries} verticals</strong>
+            <small>{knowledgeSummary.products + knowledgeSummary.stacks} products and stacks mapped</small>
           </div>
-
-          <div className={styles.heroInfoList}>
-            <div>
-              <span>Industry playbooks</span>
-              <strong>{knowledgeSummary.industries}</strong>
-            </div>
-            <div>
-              <span>Catalogue products</span>
-              <strong>{knowledgeSummary.products}</strong>
-            </div>
-            <div>
-              <span>Prebuilt stacks</span>
-              <strong>{knowledgeSummary.stacks}</strong>
-            </div>
-            <div>
-              <span>Tier mix</span>
-              <strong>{tierSummary.join(' · ')}</strong>
-            </div>
+          <div className={styles.topbarCard}>
+            <span>Operating mode</span>
+            <strong>Summary first</strong>
+            <small>Built for discovery calls, follow-up emails, and proposal prep</small>
           </div>
-
-          <div className={styles.modelGrid}>
-            <div>
-              <span>Digest model</span>
-              <strong>{knowledgeSummary.models.digest}</strong>
-            </div>
-            <div>
-              <span>Reasoning model</span>
-              <strong>{knowledgeSummary.models.reasoning}</strong>
-            </div>
-          </div>
-        </aside>
+        </div>
       </section>
 
-      <section className={styles.grid}>
-        <form className={styles.panel} onSubmit={handleSubmit}>
+      <section className={styles.workspaceGrid}>
+        <form className={styles.intakePanel} onSubmit={handleSubmit}>
           <div className={styles.panelHeader}>
             <div>
               <span className={styles.step}>01 · Intake</span>
-              <h2>Prospect brief</h2>
-              <p>Enough structure for consistency, enough speed for a live call.</p>
+              <h2>Build the brief</h2>
+              <p>Start with essentials. Add more context only when it sharpens the recommendation.</p>
             </div>
-            <div className={styles.panelBadge}>Input workspace</div>
+            <div className={styles.panelBadge}>Operator workspace</div>
+          </div>
+
+          <div className={styles.intakeIntro}>
+            <div className={styles.intakeIntroPrimary}>
+              <strong>Fastest useful path</strong>
+              <p>Company, website, buyer, and one line of deal context are enough for a strong first pass.</p>
+            </div>
+            <button type="button" className={styles.secondaryButton} onClick={() => setForm(demoProspect)}>
+              Load demo prospect
+            </button>
           </div>
 
           <FormSection
-            title="Core details"
-            description="The minimum needed to run a useful pass."
+            title="Core inputs"
+            description="The minimum required to create a credible recommendation brief."
           >
             <div className={styles.formGrid}>
               <Field label="Company name" required>
@@ -162,85 +147,246 @@ export function AnalystWorkbench({
                   onChange={(e) => setForm({ ...form, websiteUrl: e.target.value })}
                 />
               </Field>
-              <Field label="Contact name">
+              <Field label="Primary contact">
                 <input value={form.contactName} onChange={(e) => setForm({ ...form, contactName: e.target.value })} />
               </Field>
               <Field label="Role / title">
                 <input value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} />
               </Field>
-            </div>
-          </FormSection>
-
-          <FormSection
-            title="Business context"
-            description="Soft qualifiers that sharpen product fit, objections, and ROI framing."
-          >
-            <div className={styles.formGrid}>
-              <Field label="Industry hint">
-                <input value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })} />
-              </Field>
-              <Field label="Team size">
-                <input value={form.teamSize} onChange={(e) => setForm({ ...form, teamSize: e.target.value })} />
-              </Field>
-              <Field label="Revenue band">
-                <input value={form.revenue} onChange={(e) => setForm({ ...form, revenue: e.target.value })} />
-              </Field>
-              <Field label="Location">
-                <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
-              </Field>
-              <Field label="Current tools" full>
-                <textarea rows={3} value={form.currentTools} onChange={(e) => setForm({ ...form, currentTools: e.target.value })} />
-              </Field>
-              <Field label="Pain points" full>
-                <textarea rows={4} value={form.painPoints} onChange={(e) => setForm({ ...form, painPoints: e.target.value })} />
+              <Field label="What matters in this deal?" full>
+                <textarea
+                  rows={4}
+                  placeholder="Main pain, commercial angle, or what the rep wants to validate on the call."
+                  value={form.painPoints}
+                  onChange={(e) => setForm({ ...form, painPoints: e.target.value })}
+                />
               </Field>
             </div>
           </FormSection>
 
-          <FormSection title="Operator notes" description="Loose context, deal colour, or constraints worth preserving.">
-            <div className={styles.formGrid}>
-              <Field label="Extra notes" full>
-                <textarea rows={5} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
-              </Field>
+          <details className={styles.disclosure}>
+            <summary>
+              <div>
+                <strong>More context</strong>
+                <span>Optional qualifiers for tighter product fit, objections, and ROI framing.</span>
+              </div>
+              <span className={styles.disclosureToggle}>Expand</span>
+            </summary>
+
+            <div className={styles.disclosureBody}>
+              <div className={styles.formGrid}>
+                <Field label="Industry hint">
+                  <input value={form.industry} onChange={(e) => setForm({ ...form, industry: e.target.value })} />
+                </Field>
+                <Field label="Location">
+                  <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+                </Field>
+                <Field label="Team size">
+                  <input value={form.teamSize} onChange={(e) => setForm({ ...form, teamSize: e.target.value })} />
+                </Field>
+                <Field label="Revenue band">
+                  <input value={form.revenue} onChange={(e) => setForm({ ...form, revenue: e.target.value })} />
+                </Field>
+                <Field label="Current tools" full>
+                  <textarea
+                    rows={3}
+                    value={form.currentTools}
+                    onChange={(e) => setForm({ ...form, currentTools: e.target.value })}
+                  />
+                </Field>
+                <Field label="Operator notes" full>
+                  <textarea rows={4} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+                </Field>
+              </div>
             </div>
-          </FormSection>
+          </details>
 
           <div className={styles.actions}>
-            <button type="submit" disabled={loading}>
-              {loading ? 'Running analysis…' : 'Analyze prospect'}
+            <button type="submit" disabled={loading} className={styles.primaryButton}>
+              {loading ? 'Running analysis…' : 'Generate recommendation brief'}
             </button>
-            <p>
-              API key stays server-side. Extraction uses public-page scraping and heuristic text digestion.
-            </p>
+            <div className={styles.actionsMeta}>
+              <p>Public website signal is analysed server-side. The output is structured for immediate sales use.</p>
+              <span>{hasFilledCore ? 'Ready to run' : 'Enter a company and website to start'}</span>
+            </div>
           </div>
+
           {error ? <div className={styles.error}>{error}</div> : null}
+
+          <div className={styles.systemStrip}>
+            <div>
+              <span>Playbooks</span>
+              <strong>{knowledgeSummary.industries}</strong>
+            </div>
+            <div>
+              <span>Catalogue</span>
+              <strong>{knowledgeSummary.products}</strong>
+            </div>
+            <div>
+              <span>Stacks</span>
+              <strong>{knowledgeSummary.stacks}</strong>
+            </div>
+            <div>
+              <span>Tier mix</span>
+              <strong>{tierSummary}</strong>
+            </div>
+          </div>
         </form>
 
-        <section className={`${styles.panel} ${styles.outputPanel}`}>
+        <section className={styles.outputPanel}>
           <div className={styles.panelHeader}>
             <div>
-              <span className={styles.step}>02 · Output</span>
-              <h2>Recommendation report</h2>
-              <p>Organised to support discovery, qualification, and next-step positioning.</p>
+              <span className={styles.step}>02 · Brief</span>
+              <h2>Sales recommendation brief</h2>
+              <p>Lead with the decision. Support it with signal, diagnosis, and execution detail underneath.</p>
             </div>
-            <div className={styles.panelBadge}>{result ? 'Analysis ready' : 'Awaiting run'}</div>
+            <div className={styles.panelBadge}>{result ? 'Brief ready' : 'Demo preview'}</div>
           </div>
 
           {!result ? (
-            <div className={styles.emptyState}>
-              <span className={styles.emptyEyebrow}>Report canvas</span>
-              <h3>No analysis yet.</h3>
-              <p>
-                Run a prospect to populate the website digest, buying signals, recommended stack, objections, ROI
-                framing, and opening angle.
-              </p>
-            </div>
+            <EmptyState
+              knowledgeSummary={knowledgeSummary}
+              onLoadDemo={() => setForm(demoProspect)}
+              onClear={() => {
+                setForm(defaultForm);
+                setError('');
+              }}
+            />
           ) : (
             <Report result={result} />
           )}
         </section>
       </section>
     </main>
+  );
+}
+
+function EmptyState({
+  knowledgeSummary,
+  onLoadDemo,
+  onClear,
+}: {
+  knowledgeSummary: {
+    industries: number;
+    products: number;
+    stacks: number;
+    tierCounts: Record<string, number>;
+    models: { digest: string; reasoning: string };
+  };
+  onLoadDemo: () => void;
+  onClear: () => void;
+}) {
+  const proofPoints = [
+    'Executive summary you can use immediately in a follow-up or live call.',
+    'Recommended stack and products with commercial rationale, not generic AI fluff.',
+    'Discovery questions, objections, ROI talking points, and opening angle in one pass.',
+  ];
+
+  return (
+    <div className={styles.emptyState}>
+      <div className={styles.emptyHero}>
+        <div>
+          <span className={styles.emptyEyebrow}>Before first run</span>
+          <h3>Make the first screen sell the tool.</h3>
+          <p>
+            This workspace is designed to produce a sharp internal sales brief: what the buyer likely cares about, what
+            Sunburnt should recommend, and how to advance the deal without improvising from scratch.
+          </p>
+        </div>
+        <div className={styles.emptyActions}>
+          <button type="button" className={styles.primaryButton} onClick={onLoadDemo}>
+            Load demo prospect
+          </button>
+          <button type="button" className={styles.ghostButton} onClick={onClear}>
+            Start clean
+          </button>
+        </div>
+      </div>
+
+      <div className={styles.proofGrid}>
+        <div className={styles.proofCard}>
+          <span>What comes out</span>
+          <strong>Summary-first recommendation brief</strong>
+          <ul className={styles.compactList}>
+            {proofPoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={styles.proofCard}>
+          <span>Why reps use it</span>
+          <strong>Less blank-page thinking. More useful call control.</strong>
+          <div className={styles.miniMetrics}>
+            <div>
+              <small>Coverage</small>
+              <strong>{knowledgeSummary.industries} verticals</strong>
+            </div>
+            <div>
+              <small>Knowledge base</small>
+              <strong>{knowledgeSummary.products + knowledgeSummary.stacks} mapped assets</strong>
+            </div>
+            <div>
+              <small>Output shape</small>
+              <strong>Summary → stack → actions</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.demoBrief}>
+        <div className={styles.demoBriefHeader}>
+          <div>
+            <span className={styles.eyebrow}>Preview</span>
+            <h4>Example output structure</h4>
+          </div>
+          <div className={styles.previewStatus}>Operator-grade brief</div>
+        </div>
+
+        <div className={styles.previewSummary}>
+          <div className={styles.previewLead}>
+            <span>Executive take</span>
+            <strong>
+              Multi-location service business showing fragmented intake and follow-up patterns; strongest initial angle is
+              workflow unification, faster lead response, and cleaner reporting for operators.
+            </strong>
+          </div>
+          <div className={styles.previewSideStats}>
+            <div>
+              <span>Recommended stack</span>
+              <strong>Growth Ops Foundation</strong>
+            </div>
+            <div>
+              <span>Likely buyer</span>
+              <strong>Ops / GM / Owner</strong>
+            </div>
+            <div>
+              <span>Confidence style</span>
+              <strong>Commercial, evidence-led</strong>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.previewGrid}>
+          <PreviewCard
+            title="Top pain points"
+            items={[
+              'Lead response and admin handling depend on people, not system design.',
+              'Front-office communication and reporting are likely fragmented across tools.',
+              'Growth effort is leaking through slow follow-up and inconsistent qualification.',
+            ]}
+          />
+          <PreviewCard
+            title="Immediate rep utility"
+            items={[
+              'Suggested opening angle for the next conversation.',
+              'Discovery questions targeted at process friction and lost revenue.',
+              'Objection handling and ROI framing ready for follow-up.',
+            ]}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -286,149 +432,191 @@ function FormSection({
 }
 
 function Report({ result }: { result: AnalysisResponse }) {
-  const { extraction, digest, report, metadata } = result;
+  const { extraction, digest, report, metadata, input } = result;
   const confidenceNotes = [...digest.caveats, ...report.confidenceNotes];
-  const reportStats = [
-    { label: 'Industry fit', value: report.inferredIndustry.label },
-    { label: 'Confidence', value: report.inferredIndustry.confidence },
-    { label: 'Products', value: String(report.recommendedProducts.length) },
-    { label: 'Runtime', value: `${(metadata.durationMs / 1000).toFixed(1)}s` },
-  ];
+  const topProducts = report.recommendedProducts.slice(0, 3);
+  const nextActions = [
+    report.openingAngle,
+    ...report.discoveryQuestions.slice(0, 2),
+    ...report.roiTalkingPoints.slice(0, 1),
+  ].filter(Boolean);
 
   return (
     <div className={styles.report}>
-      <div className={styles.callout}>
-        <div>
+      <section className={styles.summaryShell}>
+        <div className={styles.summaryMain}>
           <span className={styles.eyebrow}>Executive summary</span>
-          <strong>{report.executiveSummary}</strong>
-        </div>
-        <span>
-          Generated in {(metadata.durationMs / 1000).toFixed(1)}s · digest {metadata.digestModel} ({metadata.digestSource},{' '}
-          {metadata.digestAttempts} attempt{metadata.digestAttempts === 1 ? '' : 's'}) · reasoning {metadata.reasoningModel}{' '}
-          ({metadata.reasoningSource}, {metadata.reasoningAttempts} attempt{metadata.reasoningAttempts === 1 ? '' : 's'})
-        </span>
-      </div>
+          <h3>{input.companyName || extraction.title}</h3>
+          <p className={styles.summaryText}>{report.executiveSummary}</p>
 
-      <div className={styles.statsGrid}>
-        {reportStats.map((stat) => (
-          <div key={stat.label} className={styles.statCard}>
-            <span>{stat.label}</span>
-            <strong>{stat.value}</strong>
+          <div className={styles.summaryMeta}>
+            <div>
+              <span>Industry fit</span>
+              <strong>{report.inferredIndustry.label}</strong>
+            </div>
+            <div>
+              <span>Confidence</span>
+              <strong className={styles.capitalized}>{report.inferredIndustry.confidence}</strong>
+            </div>
+            <div>
+              <span>Runtime</span>
+              <strong>{(metadata.durationMs / 1000).toFixed(1)}s</strong>
+            </div>
           </div>
-        ))}
+        </div>
+
+        <div className={styles.summaryAside}>
+          <div className={styles.summaryCard}>
+            <span>Recommended stack</span>
+            <strong>{report.recommendedStack.name}</strong>
+            <p>{report.recommendedStack.rollout}</p>
+          </div>
+          <div className={styles.summaryCard}>
+            <span>Best opening angle</span>
+            <strong>{report.openingAngle}</strong>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.reportHighlights}>
+        <InsightCard title="Key pain points" items={report.keyPainPoints.slice(0, 3)} />
+        <InsightCard title="Recommended products" items={topProducts.map((item) => `${item.productName} — ${item.whyItFits}`)} />
+        <InsightCard title="Next actions for the rep" items={nextActions.slice(0, 4)} />
       </div>
 
       {metadata.digestSource === 'fallback' ? (
         <div className={styles.warning}>
-          Digest model output was unusable, so the app switched to a conservative heuristic digest before running reasoning.
+          Model digest output failed validation, so the system switched to a conservative heuristic digest before running
+          reasoning.
         </div>
       ) : null}
 
-      <ReportSection title="Website snapshot">
-        <div className={styles.snapshotGrid}>
-          <SnapshotItem label="Title" value={extraction.title} />
-          <SnapshotItem label="Final URL" value={extraction.finalUrl} />
-          <SnapshotItem label="Description" value={extraction.description || 'No meta description found'} wide />
-        </div>
-        {extraction.warnings.length ? <div className={styles.warning}>{extraction.warnings.join(' ')}</div> : null}
-      </ReportSection>
+      {extraction.warnings.length ? <div className={styles.warning}>{extraction.warnings.join(' ')}</div> : null}
 
-      <ReportSection title="Digest">
-        <p>{digest.companySnapshot}</p>
-        <List items={digest.websiteSummary} />
-      </ReportSection>
+      <div className={styles.detailGrid}>
+        <div className={styles.detailColumn}>
+          <ReportSection title="Company snapshot" intro="What the site and the generated digest suggest at a glance.">
+            <p>{digest.companySnapshot}</p>
+            <List items={report.companySnapshot} />
+          </ReportSection>
 
-      <DualSection
-        leftTitle="Signals"
-        leftItems={digest.signals}
-        rightTitle="Likely pain points"
-        rightItems={report.keyPainPoints}
-      />
-      <DualSection
-        leftTitle="Buying signals"
-        leftItems={digest.buyingSignals}
-        rightTitle="Discovery questions"
-        rightItems={report.discoveryQuestions}
-      />
-
-      <ReportSection title="Industry fit">
-        <p>
-          <strong>{report.inferredIndustry.label}</strong> · {report.inferredIndustry.confidence} confidence
-        </p>
-        <p>{report.inferredIndustry.reasoning}</p>
-      </ReportSection>
-
-      <ReportSection title="Diagnosis">
-        <div className={styles.diagnosisGrid}>
-          <DiagnosisCard title="Data" items={report.diagnosis.data} />
-          <DiagnosisCard title="Process" items={report.diagnosis.process} />
-          <DiagnosisCard title="Communication" items={report.diagnosis.communication} />
-          <DiagnosisCard title="Capacity" items={report.diagnosis.capacity} />
-        </div>
-      </ReportSection>
-
-      <ReportSection title="Recommended products">
-        <div className={styles.productList}>
-          {report.recommendedProducts.map((item) => (
-            <article key={item.productName} className={styles.productCard}>
-              <div className={styles.productCardHeader}>
-                <div>
-                  <h3>{item.productName}</h3>
-                  <p>{item.whyItFits}</p>
-                </div>
-                <span>
-                  {item.tier} · {item.source}
-                </span>
-              </div>
-              <strong>{item.expectedImpact}</strong>
-            </article>
-          ))}
-        </div>
-      </ReportSection>
-
-      <DualSection
-        leftTitle="Knowledge layer rationale"
-        leftItems={report.knowledgeLayerRationale.dataToUnify}
-        rightTitle="ROI talking points"
-        rightItems={report.roiTalkingPoints}
-        rightBody={report.knowledgeLayerRationale.valueNarrative}
-      />
-
-      <ReportSection title="Recommended stack">
-        <div className={styles.stackCard}>
-          <div>
-            <span className={styles.eyebrow}>Recommended stack</span>
-            <h3>{report.recommendedStack.name}</h3>
-          </div>
-          <p>{report.recommendedStack.rationale}</p>
-          <p>
-            <strong>Rollout:</strong> {report.recommendedStack.rollout}
-          </p>
-          <List items={report.recommendedStack.implementationPhases} />
-        </div>
-      </ReportSection>
-
-      <ReportSection title="Objections and rebuttals">
-        <div className={styles.objections}>
-          {report.objectionsAndRebuttals.map((item, index) => (
-            <div key={`${item.objection}-${index}`} className={styles.objectionItem}>
-              <strong>{item.objection}</strong>
-              <p>{item.rebuttal}</p>
+          <ReportSection title="Website evidence" intro="Ground the recommendation in observable website signal.">
+            <div className={styles.snapshotGrid}>
+              <SnapshotItem label="Title" value={extraction.title} />
+              <SnapshotItem label="Final URL" value={extraction.finalUrl} />
+              <SnapshotItem label="Description" value={extraction.description || 'No meta description found'} wide />
             </div>
-          ))}
+            <div className={styles.inlineSectionGrid}>
+              <MiniSection title="Signals">
+                <List items={digest.signals} />
+              </MiniSection>
+              <MiniSection title="Buying signals">
+                <List items={digest.buyingSignals} />
+              </MiniSection>
+            </div>
+          </ReportSection>
+
+          <ReportSection title="Diagnosis" intro="Where the operational friction likely sits.">
+            <div className={styles.diagnosisGrid}>
+              <DiagnosisCard title="Data" items={report.diagnosis.data} />
+              <DiagnosisCard title="Process" items={report.diagnosis.process} />
+              <DiagnosisCard title="Communication" items={report.diagnosis.communication} />
+              <DiagnosisCard title="Capacity" items={report.diagnosis.capacity} />
+            </div>
+          </ReportSection>
+
+          <ReportSection title="Discovery and objections" intro="Use this to control the next conversation more deliberately.">
+            <div className={styles.inlineSectionGrid}>
+              <MiniSection title="Discovery questions">
+                <List items={report.discoveryQuestions} />
+              </MiniSection>
+              <MiniSection title="Objections and rebuttals">
+                <div className={styles.objections}>
+                  {report.objectionsAndRebuttals.map((item, index) => (
+                    <div key={`${item.objection}-${index}`} className={styles.objectionItem}>
+                      <strong>{item.objection}</strong>
+                      <p>{item.rebuttal}</p>
+                    </div>
+                  ))}
+                </div>
+              </MiniSection>
+            </div>
+          </ReportSection>
         </div>
-      </ReportSection>
 
-      <ReportSection title="Suggested opening angle">
-        <p>{report.openingAngle}</p>
-      </ReportSection>
+        <aside className={styles.sideColumn}>
+          <ReportSection title="Recommended stack" intro="The main packaging recommendation for this account.">
+            <div className={styles.stackCard}>
+              <strong>{report.recommendedStack.name}</strong>
+              <p>{report.recommendedStack.rationale}</p>
+              <List items={report.recommendedStack.implementationPhases} />
+            </div>
+          </ReportSection>
 
-      {confidenceNotes.length ? (
-        <ReportSection title="Confidence notes / caveats">
-          <List items={confidenceNotes} />
-        </ReportSection>
-      ) : null}
+          <ReportSection title="Recommended products" intro="Products to anchor the recommendation and why they fit.">
+            <div className={styles.productList}>
+              {report.recommendedProducts.map((item) => (
+                <article key={item.productName} className={styles.productCard}>
+                  <div className={styles.productCardTop}>
+                    <h3>{item.productName}</h3>
+                    <span>
+                      {item.tier} · {item.source}
+                    </span>
+                  </div>
+                  <p>{item.whyItFits}</p>
+                  <strong>{item.expectedImpact}</strong>
+                </article>
+              ))}
+            </div>
+          </ReportSection>
+
+          <ReportSection title="ROI and rationale" intro="Commercial framing for why the recommendation matters.">
+            <MiniSection title="ROI talking points">
+              <List items={report.roiTalkingPoints} />
+            </MiniSection>
+            <MiniSection title="Knowledge layer rationale">
+              <p>{report.knowledgeLayerRationale.valueNarrative}</p>
+              <List items={report.knowledgeLayerRationale.dataToUnify} />
+            </MiniSection>
+          </ReportSection>
+
+          <ReportSection title="Confidence notes" intro="Use these as risk framing, not as excuses.">
+            {confidenceNotes.length ? <List items={confidenceNotes} /> : <p className={styles.mutedCopy}>No major caveats flagged.</p>}
+            <div className={styles.metaNote}>
+              Generated in {(metadata.durationMs / 1000).toFixed(1)}s · digest {metadata.digestSource},{' '}
+              {metadata.digestAttempts} attempt{metadata.digestAttempts === 1 ? '' : 's'} · reasoning {metadata.reasoningSource},{' '}
+              {metadata.reasoningAttempts} attempt{metadata.reasoningAttempts === 1 ? '' : 's'}
+            </div>
+          </ReportSection>
+        </aside>
+      </div>
     </div>
+  );
+}
+
+function PreviewCard({ title, items }: { title: string; items: string[] }) {
+  return (
+    <article className={styles.previewCard}>
+      <strong>{title}</strong>
+      <ul className={styles.compactList}>
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function InsightCard({ title, items }: { title: string; items: string[] }) {
+  return (
+    <section className={styles.insightCard}>
+      <span>{title}</span>
+      <ul className={styles.compactList}>
+        {items.map((item, index) => (
+          <li key={`${item}-${index}`}>{item}</li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -449,39 +637,31 @@ function SnapshotItem({
   );
 }
 
-function ReportSection({ title, children }: { title: string; children: React.ReactNode }) {
+function ReportSection({
+  title,
+  intro,
+  children,
+}: {
+  title: string;
+  intro?: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className={styles.reportSection}>
       <div className={styles.reportSectionHeader}>
         <h3>{title}</h3>
+        {intro ? <p>{intro}</p> : null}
       </div>
       {children}
     </section>
   );
 }
 
-function DualSection({
-  leftTitle,
-  leftItems,
-  rightTitle,
-  rightItems,
-  rightBody,
-}: {
-  leftTitle: string;
-  leftItems: string[];
-  rightTitle: string;
-  rightItems: string[];
-  rightBody?: string;
-}) {
+function MiniSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className={styles.dualGrid}>
-      <ReportSection title={leftTitle}>
-        <List items={leftItems} />
-      </ReportSection>
-      <ReportSection title={rightTitle}>
-        {rightBody ? <p>{rightBody}</p> : null}
-        <List items={rightItems} />
-      </ReportSection>
+    <div className={styles.miniSection}>
+      <strong>{title}</strong>
+      {children}
     </div>
   );
 }
