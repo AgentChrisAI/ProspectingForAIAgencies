@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { AnalysisResponse } from '@/lib/types';
 import styles from '@/components/workbench.module.css';
 
@@ -18,6 +18,14 @@ const defaultForm = {
   notes: '',
 };
 
+const progressStages = [
+  { label: 'Preparing intake', target: 16 },
+  { label: 'Scraping website', target: 36 },
+  { label: 'Building digest', target: 58 },
+  { label: 'Generating recommendation brief', target: 82 },
+  { label: 'Finalizing output', target: 96 },
+] as const;
+
 export function AnalystWorkbench({
   knowledgeSummary,
 }: {
@@ -33,16 +41,43 @@ export function AnalystWorkbench({
   const [result, setResult] = useState<AnalysisResponse | null>(null);
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [copied, setCopied] = useState<string>('');
 
   const tierSummary = useMemo(
     () => Object.entries(knowledgeSummary.tierCounts).map(([tier, count]) => `${tier}: ${count}`),
     [knowledgeSummary.tierCounts]
   );
 
+  const progressStage = useMemo(() => {
+    return progressStages.findLast((stage) => progress >= stage.target) ?? progressStages[0];
+  }, [progress]);
+
+  useEffect(() => {
+    if (!loading) {
+      setProgress(0);
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setProgress((current) => {
+        if (current >= 96) return current;
+
+        const nextTarget = progressStages.find((stage) => stage.target > current)?.target ?? 96;
+        const step = current < 36 ? 4 : current < 58 ? 3 : current < 82 ? 2 : 1;
+        return Math.min(current + step, nextTarget);
+      });
+    }, 520);
+
+    return () => window.clearInterval(interval);
+  }, [loading]);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
     setError('');
+    setCopied('');
+    setProgress(8);
 
     try {
       const response = await fetch('/api/analyze', {
@@ -57,14 +92,43 @@ export function AnalystWorkbench({
         throw new Error((data.error || 'Analysis failed.') + detailText);
       }
 
+      setProgress(100);
       setResult(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Analysis failed.');
       setResult(null);
     } finally {
-      setLoading(false);
+      window.setTimeout(() => {
+        setLoading(false);
+      }, 350);
     }
   }
+
+  async function copyToClipboard(label: string, value: string) {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(label);
+      window.setTimeout(() => setCopied(''), 1800);
+    } catch {
+      setCopied('Copy failed');
+      window.setTimeout(() => setCopied(''), 1800);
+    }
+  }
+
+  function handleExport() {
+    if (!result) return;
+
+    const fileName = `${slugify(form.companyName || 'prospect-brief')}-brief.md`;
+    const blob = new Blob([buildExportMarkdown(form, result)], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = fileName;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
+  const briefMarkdown = result ? buildExportMarkdown(form, result) : '';
 
   return (
     <main className={styles.page}>
@@ -145,13 +209,28 @@ export function AnalystWorkbench({
           </div>
 
           <div className={styles.actions}>
-            <button type="submit" disabled={loading}>
-              {loading ? 'Running analysis…' : 'Analyze prospect'}
-            </button>
+            <div className={styles.actionBar}>
+              <button type="submit" disabled={loading}>
+                {loading ? 'Running analysis…' : 'Analyze prospect'}
+              </button>
+              <button type="button" className={styles.secondaryButton} onClick={handleExport} disabled={!result || loading}>
+                Export brief
+              </button>
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                onClick={() => result && copyToClipboard('Brief copied', briefMarkdown)}
+                disabled={!result || loading}
+              >
+                Copy brief
+              </button>
+            </div>
             <p>
               API key stays server-side. Website extraction is heuristic v1: raw HTML fetch + text extraction from public pages.
             </p>
+            {copied ? <div className={styles.notice}>{copied}</div> : null}
           </div>
+          {loading ? <ProgressPanel progress={progress} stage={progressStage.label} /> : null}
           {error ? <div className={styles.error}>{error}</div> : null}
         </form>
 
@@ -173,7 +252,7 @@ export function AnalystWorkbench({
               </p>
             </div>
           ) : (
-            <Report result={result} />
+            <Report result={result} onExport={handleExport} onCopy={() => copyToClipboard('Brief copied', briefMarkdown)} />
           )}
         </section>
       </section>
@@ -202,12 +281,64 @@ function Field({
   );
 }
 
-function Report({ result }: { result: AnalysisResponse }) {
-  const { extraction, digest, report, metadata } = result;
+function ProgressPanel({ progress, stage }: { progress: number; stage: string }) {
+  return (
+    <div className={styles.progressPanel}>
+      <div className={styles.progressHeader}>
+        <strong>Analysis in progress</strong>
+        <span>{Math.min(progress, 100)}%</span>
+      </div>
+      <div className={styles.progressTrack}>
+        <div className={styles.progressBar} style={{ width: `${Math.min(progress, 100)}%` }} />
+      </div>
+      <div className={styles.progressMeta}>
+        <span className={styles.pulseDot} />
+        <span>{stage}</span>
+      </div>
+      <ul className={styles.progressStages}>
+        {progressStages.map((item) => (
+          <li key={item.label} className={progress >= item.target ? styles.progressStageActive : ''}>
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function Report({
+  result,
+  onExport,
+  onCopy,
+}: {
+  result: AnalysisResponse;
+  onExport: () => void;
+  onCopy: () => void;
+}) {
+  const { extraction, digest, report, metadata, input } = result;
   const confidenceNotes = [...digest.caveats, ...report.confidenceNotes];
+
+  const summaryStats = [
+    { label: 'Industry', value: report.inferredIndustry.label },
+    { label: 'Top pain', value: report.keyPainPoints[0] || 'Not specified' },
+    { label: 'Best-fit stack', value: report.recommendedStack.name },
+    { label: 'Opening angle', value: report.openingAngle },
+  ];
 
   return (
     <div className={styles.report}>
+      <div className={styles.stickyActions}>
+        <span className={styles.statusPill}>Ready to export</span>
+        <div className={styles.stickyButtons}>
+          <button type="button" className={styles.secondaryButton} onClick={onCopy}>
+            Copy brief
+          </button>
+          <button type="button" className={styles.secondaryButton} onClick={onExport}>
+            Export markdown
+          </button>
+        </div>
+      </div>
+
       <div className={styles.callout}>
         <strong>{report.executiveSummary}</strong>
         <span>
@@ -216,11 +347,30 @@ function Report({ result }: { result: AnalysisResponse }) {
         </span>
       </div>
 
+      <section className={styles.summaryStrip}>
+        {summaryStats.map((item) => (
+          <article key={item.label} className={styles.summaryCard}>
+            <span>{item.label}</span>
+            <strong>{item.value}</strong>
+          </article>
+        ))}
+      </section>
+
       {metadata.digestSource === 'fallback' ? (
         <div className={styles.warning}>
           Digest model output was unusable, so the app switched to a conservative heuristic digest before running reasoning.
         </div>
       ) : null}
+
+      <ReportSection title="Prospect context">
+        <ul className={styles.list}>
+          <li><strong>Company:</strong> {input.companyName}</li>
+          <li><strong>Website:</strong> {input.websiteUrl}</li>
+          {input.contactName ? <li><strong>Contact:</strong> {input.contactName}</li> : null}
+          {input.role ? <li><strong>Role:</strong> {input.role}</li> : null}
+          {input.industry ? <li><strong>Industry hint:</strong> {input.industry}</li> : null}
+        </ul>
+      </ReportSection>
 
       <ReportSection title="Website snapshot">
         <ul>
@@ -380,4 +530,145 @@ function List({ items }: { items: string[] }) {
       ))}
     </ul>
   );
+}
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '') || 'prospect-brief';
+}
+
+function buildExportMarkdown(form: typeof defaultForm, result: AnalysisResponse) {
+  const { input, extraction, digest, report, metadata } = result;
+  const confidenceNotes = [...digest.caveats, ...report.confidenceNotes];
+
+  const lines = [
+    `# Prospect Brief — ${input.companyName}`,
+    '',
+    `Generated: ${new Date(metadata.generatedAt).toLocaleString()}`,
+    `Website: ${input.websiteUrl}`,
+    '',
+    '## Intake',
+    bulletMap({
+      'Company name': form.companyName,
+      'Website URL': form.websiteUrl,
+      'Contact name': form.contactName,
+      'Role / title': form.role,
+      'Industry hint': form.industry,
+      'Team size': form.teamSize,
+      'Revenue band': form.revenue,
+      Location: form.location,
+      'Current tools': form.currentTools,
+      'Pain points': form.painPoints,
+      'Extra notes': form.notes,
+    }),
+    '',
+    '## Executive summary',
+    report.executiveSummary,
+    '',
+    '## Website snapshot',
+    bulletMap({
+      Title: extraction.title,
+      'Final URL': extraction.finalUrl,
+      Description: extraction.description || 'No meta description found',
+    }),
+    '',
+    '## Digest',
+    digest.companySnapshot,
+    '',
+    '### Website summary',
+    bulletList(digest.websiteSummary),
+    '',
+    '### Signals',
+    bulletList(digest.signals),
+    '',
+    '### Buying signals',
+    bulletList(digest.buyingSignals),
+    '',
+    '## Industry fit',
+    bulletMap({
+      Industry: report.inferredIndustry.label,
+      Confidence: report.inferredIndustry.confidence,
+      Reasoning: report.inferredIndustry.reasoning,
+    }),
+    '',
+    '## Key pain points',
+    bulletList(report.keyPainPoints),
+    '',
+    '## Diagnosis',
+    '### Data',
+    bulletList(report.diagnosis.data),
+    '',
+    '### Process',
+    bulletList(report.diagnosis.process),
+    '',
+    '### Communication',
+    bulletList(report.diagnosis.communication),
+    '',
+    '### Capacity',
+    bulletList(report.diagnosis.capacity),
+    '',
+    '## Recommended products',
+    ...report.recommendedProducts.flatMap((item, index) => [
+      `### ${index + 1}. ${item.positionedName}`,
+      bulletMap({
+        'Catalogue product': item.productName,
+        Tier: item.tier,
+        Source: item.source,
+        Outcome: item.outcomeSummary,
+        'Industry application': item.industryApplication,
+        'Why it fits': item.whyItFits,
+        'Expected impact': item.expectedImpact,
+      }),
+      '',
+    ]),
+    '## Recommended stack',
+    bulletMap({
+      Name: report.recommendedStack.name,
+      Rationale: report.recommendedStack.rationale,
+      Rollout: report.recommendedStack.rollout,
+    }),
+    '',
+    '### Implementation phases',
+    bulletList(report.recommendedStack.implementationPhases),
+    '',
+    '## Knowledge Layer rationale',
+    report.knowledgeLayerRationale.valueNarrative,
+    '',
+    '### Data to unify',
+    bulletList(report.knowledgeLayerRationale.dataToUnify),
+    '',
+    '## ROI talking points',
+    bulletList(report.roiTalkingPoints),
+    '',
+    '## Objections and rebuttals',
+    ...report.objectionsAndRebuttals.flatMap((item, index) => [
+      `### ${index + 1}. ${item.objection}`,
+      item.rebuttal,
+      '',
+    ]),
+    '## Discovery questions',
+    bulletList(report.discoveryQuestions),
+    '',
+    '## Opening angle',
+    report.openingAngle,
+    '',
+    '## Confidence notes',
+    bulletList(confidenceNotes),
+  ];
+
+  return lines.filter(Boolean).join('\n');
+}
+
+function bulletList(items: string[]) {
+  if (!items.length) return '- None';
+  return items.map((item) => `- ${item}`).join('\n');
+}
+
+function bulletMap(values: Record<string, string | undefined>) {
+  return Object.entries(values)
+    .filter(([, value]) => value && value.trim())
+    .map(([key, value]) => `- **${key}:** ${value}`)
+    .join('\n');
 }

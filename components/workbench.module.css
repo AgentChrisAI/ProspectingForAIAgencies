@@ -37,7 +37,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.heroCard, .panel, .callout, .diagnosisCard, .productCard, .objectionItem {
+.heroCard, .panel, .callout, .diagnosisCard, .productCard, .objectionItem, .summaryCard, .progressPanel {
   background: linear-gradient(180deg, rgba(28,28,28,0.96), rgba(18,18,18,0.96));
   border: 1px solid var(--border);
   border-radius: 24px;
@@ -106,7 +106,12 @@
   gap: 12px;
   margin-top: 20px;
 }
-.actions button {
+.actionBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.actions button, .secondaryButton {
   border: 0;
   border-radius: 18px;
   background: linear-gradient(135deg, var(--orange), var(--orange-deep));
@@ -115,8 +120,20 @@
   padding: 15px 18px;
   cursor: pointer;
 }
-.actions button:disabled { opacity: 0.6; cursor: wait; }
+.secondaryButton {
+  background: rgba(255,245,228,0.06);
+  color: var(--cream);
+  border: 1px solid var(--border-strong);
+}
+.actions button:disabled, .secondaryButton:disabled { opacity: 0.6; cursor: wait; }
 .actions p, .emptyState p { color: var(--cream); margin: 0; }
+.notice {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(74,199,138,0.35);
+  background: rgba(74,199,138,0.12);
+  color: #c8ffe2;
+}
 .error, .warning {
   margin-top: 14px;
   padding: 14px 16px;
@@ -129,6 +146,60 @@
   border-color: rgba(255,209,102,0.3);
   background: rgba(255,209,102,0.12);
   color: #ffe8a6;
+}
+.progressPanel {
+  margin-top: 16px;
+  padding: 18px;
+}
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: var(--cream);
+}
+.progressTrack {
+  margin-top: 12px;
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,245,228,0.08);
+  border: 1px solid rgba(227,144,43,0.18);
+}
+.progressBar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), #ffd27a, var(--orange));
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+  transition: width 0.45s ease;
+}
+.progressMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--cream);
+}
+.pulseDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--orange);
+  box-shadow: 0 0 0 rgba(227,144,43,0.6);
+  animation: pulse 1.4s infinite;
+}
+.progressStages {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--muted-strong);
+}
+.progressStages li + li {
+  margin-top: 8px;
+}
+.progressStageActive {
+  color: var(--cream);
 }
 .emptyState {
   min-height: 500px;
@@ -144,6 +215,38 @@
   flex-direction: column;
   gap: 18px;
 }
+.stickyActions {
+  position: sticky;
+  top: 16px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: rgba(18,18,18,0.94);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(74,199,138,0.12);
+  border: 1px solid rgba(74,199,138,0.3);
+  color: #c8ffe2;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.stickyButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 .callout {
   display: flex;
   flex-direction: column;
@@ -152,6 +255,26 @@
   border-color: rgba(255,107,53,0.3);
 }
 .callout span { color: var(--cream); font-size: 0.9rem; }
+.summaryStrip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.summaryCard {
+  padding: 16px;
+}
+.summaryCard span {
+  display: block;
+  color: var(--muted-strong);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.summaryCard strong {
+  color: var(--cream);
+  line-height: 1.4;
+}
 .reportSection {
   padding: 18px 20px;
   border-radius: 22px;
@@ -218,13 +341,67 @@
   margin-top: 8px;
 }
 .productCard p, .objectionItem p { margin: 10px 0 0; color: var(--cream); }
-@media (max-width: 1200px) {
-  .hero { grid-template-columns: 1fr; }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(227,144,43,0.55);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(227,144,43,0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(227,144,43,0);
+  }
+}
+
+@media print {
+  .hero,
+  .actions,
+  .stickyActions,
+  .progressPanel {
+    display: none;
+  }
+
+  .page {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .panel,
+  .reportSection,
+  .callout,
+  .summaryCard,
+  .productCard,
+  .diagnosisCard,
+  .objectionItem {
+    box-shadow: none;
+    background: white;
+    color: black;
+    border-color: #d8d8d8;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero,
+  .summaryStrip {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 760px) {
   .page { padding-inline: 16px; }
-  .formGrid, .dualGrid, .diagnosisGrid, .modelGrid, .productHighlights { grid-template-columns: 1fr; }
+  .formGrid, .dualGrid, .diagnosisGrid, .modelGrid, .productHighlights, .summaryStrip { grid-template-columns: 1fr; }
   .panelHeader { flex-direction: column; align-items: start; }
-  .productHeader { flex-direction: column; }
+  .productHeader, .stickyActions, .progressHeader { flex-direction: column; align-items: flex-start; }
   .productMeta { white-space: normal; }
+  .actionBar, .stickyButtons { width: 100%; }
+  .actionBar > button, .stickyButtons > button { width: 100%; }
 }
