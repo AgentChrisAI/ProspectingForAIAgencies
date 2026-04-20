@@ -53,7 +53,7 @@ const REASONING_SCHEMA_HINT = `{
   "inferredIndustry": {"label":"string","confidence":"low|medium|high","reasoning":"string"},
   "keyPainPoints": ["string"],
   "diagnosis": {"data":["string"],"process":["string"],"communication":["string"],"capacity":["string"]},
-  "recommendedProducts": [{"productName":"string","tier":"string","whyItFits":"string","expectedImpact":"string","source":"catalogue|sales-guide"}],
+  "recommendedProducts": [{"productName":"string","positionedName":"string","tier":"string","outcomeSummary":"string","industryApplication":"string","whyItFits":"string","expectedImpact":"string","source":"catalogue|sales-guide"}],
   "recommendedStack": {"name":"string","rollout":"string","rationale":"string","implementationPhases":["string"]},
   "knowledgeLayerRationale": {"dataToUnify":["string"],"valueNarrative":"string"},
   "roiTalkingPoints": ["string"],
@@ -71,11 +71,19 @@ If evidence is weak, say so explicitly in caveats or reasoning.
 Prefer short, factual bullet-style strings over broad claims.
 Every array must contain concise strings only.`;
 
-const REASONING_SYSTEM = `You are Sunburnt AI's solutions architect.
+const REASONING_SYSTEM = `You are Sunburnt AI's industry-specific sales solutions architect.
 Return exactly one JSON object and nothing else.
 Do not use markdown fences. Do not add commentary before or after the JSON.
 Ground every recommendation in the provided Sunburnt sales guide, industry playbooks, product catalogue, and digest.
 Do not invent unavailable products.
+For recommendedProducts, optimise for fast sales scanning:
+- keep the underlying productName tied to the catalogue product
+- create positionedName as a business-readable, industry-aware label
+- lead with the concrete business outcome, not the technical mechanism
+- make outcomeSummary immediately understandable to a sales rep
+- make industryApplication explain how the recommendation applies to this prospect and this industry
+- whyItFits should connect the recommendation to the prospect's actual pains or signals
+- expectedImpact should be commercially concrete and outcome-focused
 If the digest used fallback heuristics or confidence is weak, say that plainly in confidenceNotes.
 Keep the output crisp enough for a sales rep to use live on a call.`;
 
@@ -274,7 +282,7 @@ export async function runAnalysis(input: ProspectInput): Promise<AnalysisRespons
       user: JSON.stringify(
         {
           instructions:
-            'Use the digest as a working brief, but adjust confidence downward when evidence is thin. Keep recommendations specific and commercially sensible.',
+            'Use the digest as a working brief, but adjust confidence downward when evidence is thin. Keep recommendations specific, commercially sensible, and easy for a sales rep to scan in seconds. Reframe technical product names into outcome-led, industry-aware positioned names while preserving the underlying catalogue grounding.' ,
           outputShape: JSON.parse(REASONING_SCHEMA_HINT),
           prospect: input,
           digest,

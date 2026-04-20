@@ -61,7 +61,10 @@ export const recommendationReportSchema = z.object({
   recommendedProducts: z.array(
     z.object({
       productName: z.string().min(1),
+      positionedName: z.string().min(1),
       tier: z.string().min(1),
+      outcomeSummary: z.string().min(1),
+      industryApplication: z.string().min(1),
       whyItFits: z.string().min(1),
       expectedImpact: z.string().min(1),
       source: z.enum(['catalogue', 'sales-guide']),
