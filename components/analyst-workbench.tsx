@@ -43,6 +43,7 @@ export function AnalystWorkbench({
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [copied, setCopied] = useState<string>('');
+  const [editorNotes, setEditorNotes] = useState('');
 
   const tierSummary = useMemo(
     () => Object.entries(knowledgeSummary.tierCounts).map(([tier, count]) => `${tier}: ${count}`),
@@ -94,6 +95,7 @@ export function AnalystWorkbench({
 
       setProgress(100);
       setResult(data);
+      setEditorNotes('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Analysis failed.');
       setResult(null);
@@ -115,20 +117,19 @@ export function AnalystWorkbench({
     }
   }
 
-  function handleExport() {
+  function handleExportMarkdown() {
     if (!result) return;
 
     const fileName = `${slugify(form.companyName || 'prospect-brief')}-brief.md`;
-    const blob = new Blob([buildExportMarkdown(form, result)], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = fileName;
-    anchor.click();
-    URL.revokeObjectURL(url);
+    downloadTextFile(fileName, buildExportMarkdown(form, result, editorNotes), 'text/markdown;charset=utf-8');
   }
 
-  const briefMarkdown = result ? buildExportMarkdown(form, result) : '';
+  function handleExportPdf() {
+    if (!result) return;
+    window.print();
+  }
+
+  const briefMarkdown = result ? buildExportMarkdown(form, result, editorNotes) : '';
 
   return (
     <main className={styles.page}>
@@ -213,8 +214,11 @@ export function AnalystWorkbench({
               <button type="submit" disabled={loading}>
                 {loading ? 'Running analysis…' : 'Analyze prospect'}
               </button>
-              <button type="button" className={styles.secondaryButton} onClick={handleExport} disabled={!result || loading}>
-                Export brief
+              <button type="button" className={styles.secondaryButton} onClick={handleExportMarkdown} disabled={!result || loading}>
+                Export markdown
+              </button>
+              <button type="button" className={styles.secondaryButton} onClick={handleExportPdf} disabled={!result || loading}>
+                Export PDF
               </button>
               <button
                 type="button"
@@ -252,7 +256,15 @@ export function AnalystWorkbench({
               </p>
             </div>
           ) : (
-            <Report result={result} onExport={handleExport} onCopy={() => copyToClipboard('Brief copied', briefMarkdown)} />
+            <Report
+              result={result}
+              editorNotes={editorNotes}
+              onEditorNotesChange={setEditorNotes}
+              onExportMarkdown={handleExportMarkdown}
+              onExportPdf={handleExportPdf}
+              onCopy={() => copyToClipboard('Brief copied', briefMarkdown)}
+              onCopySection={copyToClipboard}
+            />
           )}
         </section>
       </section>
@@ -308,12 +320,20 @@ function ProgressPanel({ progress, stage }: { progress: number; stage: string })
 
 function Report({
   result,
-  onExport,
+  editorNotes,
+  onEditorNotesChange,
+  onExportMarkdown,
+  onExportPdf,
   onCopy,
+  onCopySection,
 }: {
   result: AnalysisResponse;
-  onExport: () => void;
+  editorNotes: string;
+  onEditorNotesChange: (value: string) => void;
+  onExportMarkdown: () => void;
+  onExportPdf: () => void;
   onCopy: () => void;
+  onCopySection: (label: string, value: string) => void;
 }) {
   const { extraction, digest, report, metadata, input } = result;
   const confidenceNotes = [...digest.caveats, ...report.confidenceNotes];
@@ -325,6 +345,20 @@ function Report({
     { label: 'Opening angle', value: report.openingAngle },
   ];
 
+  const sectionCopy = {
+    products: report.recommendedProducts
+      .map(
+        (item, index) =>
+          `${index + 1}. ${item.positionedName}\nOutcome: ${item.outcomeSummary}\nIndustry application: ${item.industryApplication}\nWhy it fits: ${item.whyItFits}\nExpected impact: ${item.expectedImpact}`
+      )
+      .join('\n\n'),
+    objections: report.objectionsAndRebuttals
+      .map((item, index) => `${index + 1}. ${item.objection}\n${item.rebuttal}`)
+      .join('\n\n'),
+    discovery: report.discoveryQuestions.map((item) => `- ${item}`).join('\n'),
+    notes: editorNotes,
+  };
+
   return (
     <div className={styles.report}>
       <div className={styles.stickyActions}>
@@ -333,8 +367,11 @@ function Report({
           <button type="button" className={styles.secondaryButton} onClick={onCopy}>
             Copy brief
           </button>
-          <button type="button" className={styles.secondaryButton} onClick={onExport}>
+          <button type="button" className={styles.secondaryButton} onClick={onExportMarkdown}>
             Export markdown
+          </button>
+          <button type="button" className={styles.secondaryButton} onClick={onExportPdf}>
+            Export PDF
           </button>
         </div>
       </div>
@@ -361,6 +398,8 @@ function Report({
           Digest model output was unusable, so the app switched to a conservative heuristic digest before running reasoning.
         </div>
       ) : null}
+
+      <EditableNotesCard value={editorNotes} onChange={onEditorNotesChange} onCopy={() => onCopySection('Notes copied', sectionCopy.notes)} />
 
       <ReportSection title="Prospect context">
         <ul className={styles.list}>
@@ -389,7 +428,17 @@ function Report({
       </ReportSection>
 
       <DualSection leftTitle="Signals" leftItems={digest.signals} rightTitle="Likely pain points" rightItems={report.keyPainPoints} />
-      <DualSection leftTitle="Buying signals" leftItems={digest.buyingSignals} rightTitle="Discovery questions" rightItems={report.discoveryQuestions} />
+      <DualSection
+        leftTitle="Buying signals"
+        leftItems={digest.buyingSignals}
+        rightTitle="Discovery questions"
+        rightItems={report.discoveryQuestions}
+        rightActions={
+          <button type="button" className={styles.sectionButton} onClick={() => onCopySection('Discovery questions copied', sectionCopy.discovery)}>
+            Copy section
+          </button>
+        }
+      />
 
       <ReportSection title="Industry fit">
         <p>
@@ -407,7 +456,14 @@ function Report({
         </div>
       </ReportSection>
 
-      <ReportSection title="Recommended products">
+      <ReportSection
+        title="Recommended products"
+        actions={
+          <button type="button" className={styles.sectionButton} onClick={() => onCopySection('Recommended products copied', sectionCopy.products)}>
+            Copy section
+          </button>
+        }
+      >
         <div className={styles.productList}>
           {report.recommendedProducts.map((item) => (
             <article key={`${item.productName}-${item.positionedName}`} className={styles.productCard}>
@@ -454,7 +510,14 @@ function Report({
         <List items={report.recommendedStack.implementationPhases} />
       </ReportSection>
 
-      <ReportSection title="Objections and rebuttals">
+      <ReportSection
+        title="Objections and rebuttals"
+        actions={
+          <button type="button" className={styles.sectionButton} onClick={() => onCopySection('Objections copied', sectionCopy.objections)}>
+            Copy section
+          </button>
+        }
+      >
         <div className={styles.objections}>
           {report.objectionsAndRebuttals.map((item, index) => (
             <div key={`${item.objection}-${index}`} className={styles.objectionItem}>
@@ -478,10 +541,52 @@ function Report({
   );
 }
 
-function ReportSection({ title, children }: { title: string; children: React.ReactNode }) {
+function EditableNotesCard({
+  value,
+  onChange,
+  onCopy,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  onCopy: () => void;
+}) {
+  return (
+    <section className={styles.editorCard}>
+      <div className={styles.sectionHeader}>
+        <div>
+          <h3>Editable recommendation notes</h3>
+          <p>Add rep-specific context before copying or exporting the brief.</p>
+        </div>
+        <button type="button" className={styles.sectionButton} onClick={onCopy} disabled={!value.trim()}>
+          Copy notes
+        </button>
+      </div>
+      <textarea
+        className={styles.editorTextarea}
+        rows={6}
+        placeholder="Add call prep notes, custom framing, pricing context, or deal strategy here..."
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+    </section>
+  );
+}
+
+function ReportSection({
+  title,
+  children,
+  actions,
+}: {
+  title: string;
+  children: React.ReactNode;
+  actions?: React.ReactNode;
+}) {
   return (
     <section className={styles.reportSection}>
-      <h3>{title}</h3>
+      <div className={styles.sectionHeader}>
+        <h3>{title}</h3>
+        {actions ? <div>{actions}</div> : null}
+      </div>
       {children}
     </section>
   );
@@ -493,19 +598,21 @@ function DualSection({
   rightTitle,
   rightItems,
   rightBody,
+  rightActions,
 }: {
   leftTitle: string;
   leftItems: string[];
   rightTitle: string;
   rightItems: string[];
   rightBody?: string;
+  rightActions?: React.ReactNode;
 }) {
   return (
     <div className={styles.dualGrid}>
       <ReportSection title={leftTitle}>
         <List items={leftItems} />
       </ReportSection>
-      <ReportSection title={rightTitle}>
+      <ReportSection title={rightTitle} actions={rightActions}>
         {rightBody ? <p>{rightBody}</p> : null}
         <List items={rightItems} />
       </ReportSection>
@@ -539,7 +646,7 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, '') || 'prospect-brief';
 }
 
-function buildExportMarkdown(form: typeof defaultForm, result: AnalysisResponse) {
+function buildExportMarkdown(form: typeof defaultForm, result: AnalysisResponse, editorNotes?: string) {
   const { input, extraction, digest, report, metadata } = result;
   const confidenceNotes = [...digest.caveats, ...report.confidenceNotes];
 
@@ -567,6 +674,13 @@ function buildExportMarkdown(form: typeof defaultForm, result: AnalysisResponse)
     '## Executive summary',
     report.executiveSummary,
     '',
+    ...(editorNotes?.trim()
+      ? [
+          '## Editable recommendation notes',
+          editorNotes,
+          '',
+        ]
+      : []),
     '## Website snapshot',
     bulletMap({
       Title: extraction.title,
@@ -671,4 +785,14 @@ function bulletMap(values: Record<string, string | undefined>) {
     .filter(([, value]) => value && value.trim())
     .map(([key, value]) => `- **${key}:** ${value}`)
     .join('\n');
+}
+
+function downloadTextFile(fileName: string, content: string, mimeType: string) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = fileName;
+  anchor.click();
+  URL.revokeObjectURL(url);
 }

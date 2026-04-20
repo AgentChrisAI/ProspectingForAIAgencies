@@ -111,7 +111,7 @@
   flex-wrap: wrap;
   gap: 12px;
 }
-.actions button, .secondaryButton {
+.actions button, .secondaryButton, .sectionButton {
   border: 0;
   border-radius: 18px;
   background: linear-gradient(135deg, var(--orange), var(--orange-deep));
@@ -125,7 +125,15 @@
   color: var(--cream);
   border: 1px solid var(--border-strong);
 }
-.actions button:disabled, .secondaryButton:disabled { opacity: 0.6; cursor: wait; }
+.sectionButton {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255,245,228,0.05);
+  color: var(--cream);
+  border: 1px solid var(--border-strong);
+  font-weight: 700;
+}
+.actions button:disabled, .secondaryButton:disabled, .sectionButton:disabled { opacity: 0.6; cursor: wait; }
 .actions p, .emptyState p { color: var(--cream); margin: 0; }
 .notice {
   padding: 12px 14px;
@@ -263,6 +271,22 @@
 .summaryCard {
   padding: 16px;
 }
+.editorCard {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: rgba(255,245,228,0.03);
+}
+.editorTextarea {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 18px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255,245,228,0.04);
+  color: var(--text);
+  padding: 16px;
+  resize: vertical;
+}
 .summaryCard span {
   display: block;
   color: var(--muted-strong);
@@ -281,6 +305,15 @@
   border: 1px solid var(--border);
   background: rgba(255,245,228,0.03);
 }
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.sectionHeader h3 { margin: 0; color: var(--orange); }
+.sectionHeader p { margin: 6px 0 0; color: var(--cream); }
 .reportSection h3 { margin: 0 0 12px; color: var(--orange); }
 .reportSection p { margin: 0 0 10px; color: var(--cream); }
 .list {
@@ -400,8 +433,8 @@
   .page { padding-inline: 16px; }
   .formGrid, .dualGrid, .diagnosisGrid, .modelGrid, .productHighlights, .summaryStrip { grid-template-columns: 1fr; }
   .panelHeader { flex-direction: column; align-items: start; }
-  .productHeader, .stickyActions, .progressHeader { flex-direction: column; align-items: flex-start; }
+  .productHeader, .stickyActions, .progressHeader, .sectionHeader { flex-direction: column; align-items: flex-start; }
   .productMeta { white-space: normal; }
   .actionBar, .stickyButtons { width: 100%; }
-  .actionBar > button, .stickyButtons > button { width: 100%; }
+  .actionBar > button, .stickyButtons > button, .sectionButton { width: 100%; }
 }
