@@ -9,7 +9,7 @@ export const env = {
   reasoningModel: process.env.REASONING_MODEL ?? 'anthropic/claude-opus-4.6',
   maxScrapeChars: Number(process.env.MAX_SCRAPE_CHARS ?? 25000),
   requestTimeoutMs: Number(process.env.REQUEST_TIMEOUT_MS ?? 15000),
-  maxOutputTokens: Number(process.env.MAX_OUTPUT_TOKENS ?? 128000),
+  maxOutputTokens: Number(process.env.MAX_OUTPUT_TOKENS ?? 16000),
 };
 
 export function assertServerEnv() {
