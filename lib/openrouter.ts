@@ -99,6 +99,7 @@ async function createCompletion(messages: ChatCompletionMessageParam[], model: s
   return getOpenRouterClient().chat.completions.create({
     model,
     temperature: 0.1,
+    max_tokens: env.maxOutputTokens,
     response_format: { type: 'json_object' },
     messages,
   });
